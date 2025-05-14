@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROYECTO TESINA VECOPO</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Color de fondo gris claro */
+            padding-top: 70px; /* Espacio para la navegación absoluta/fija en la parte superior */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra el contenido principal horizontalmente */
+            min-height: 100vh;
+            position: relative; /* Necesario si la navegación es 'absolute' y relativa al body */
+        }
+
+        .navigation {
+            position: absolute; /* Posicionamiento absoluto respecto al body */
+            top: 20px;          /* Espacio desde la parte superior */
+            right: 20px;         /* Espacio desde la derecha */
+            display: flex;
+            flex-direction: row-reverse; /* Ordena los items de derecha a izquierda */
+            gap: 15px; /* Espacio entre los enlaces de navegación */
+            z-index: 1000; /* Asegura que la navegación esté por encima de otro contenido */
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: #00897b; /* Color verde azulado para los enlaces */
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navigation a:hover {
+            background-color: #b2ebf2; /* Color de fondo celeste más claro al pasar el mouse */
+            color: #004d40; /* Texto más oscuro al pasar el mouse */
+        }
+
+        .main-content {
+            width: 100%;
+            display: flex; /* Activa Flexbox */
+            flex-direction: column; /* Apila los elementos hijos (el h1) verticalmente */
+            align-items: center; /* Centra los hijos horizontalmente en la dirección transversal (horizontal aquí) */
+            justify-content: center; /* Centra los hijos verticalmente en la dirección principal (vertical aquí) */
+            padding: 20px; /* Relleno para el área de contenido */
+            flex-grow: 1; /* Permite que esta área ocupe el espacio vertical restante */
+        }
+
+        .main-title {
+            margin-top: 200px auto;
+            font-size: 2.8em; /* Tamaño de fuente para el título principal */
+            color: #004d40; /* Texto verde azulado oscuro */
+            margin-bottom: 40px; /* Espacio debajo del título */
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff; /* Fondo blanco para el contenedor principal */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            width: 80%;
+            max-width: 960px;
+            text-align: left; /* El texto dentro del contenedor se alinea a la izquierda */
+        }
+
+        /* Puedes agregar más estilos CSS aquí según necesites */
+    </style>
+</head>
+<body>
+
+    <nav class="navigation">
+        <a href="#">Bibliografía</a>
+        <a href="#">El rol del Estado</a>
+        <a href="#">Soluciones</a>
+        <a href="#">Ejemplos</a>
+        <a href="#">Tipos</a>
+        <a href="#">Definición</a>
+        <a href="#">Introducción</a>
+        <a href="#">Inicio</a>
+    </nav>
+
+    <main class="main-content">
+        <h1 class="main-title">PROYECTO TESINA VECOPO</h1>
+
+</body>
+</html>
