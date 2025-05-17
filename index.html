@@ -1,97 +1,168 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROYECTO TESINA VECOPO</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('fondocielo.jpg'); /* Especifica la ruta de la imagen */
-            background-size: cover; /* Hace que la imagen cubra todo el área del body */
-            background-position: center; /* Centra la imagen */
-            background-repeat: no-repeat; /* Evita que la imagen se repita */
-            background-attachment: fixed; /* Mantiene la imagen fija mientras se hace scroll */
-            background-color: #f4f4f4; /* Color de fondo gris claro */
-            padding-top: 70px; /* Espacio para la navegación absoluta/fija en la parte superior */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centra el contenido principal horizontalmente */
-            min-height: 100vh;
-            position: relative; /* Necesario si la navegación es 'absolute' y relativa al body */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VECOPO Tesina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .navigation {
-            position: absolute; /* Posicionamiento absoluto respecto al body */
-            top: 20px;          /* Espacio desde la parte superior */
-            right: 20px;         /* Espacio desde la derecha */
-            display: flex;
-            flex-direction: row-reverse; /* Ordena los items de derecha a izquierda */
-            gap: 15px; /* Espacio entre los enlaces de navegación */
-            z-index: 1000; /* Asegura que la navegación esté por encima de otro contenido */
-        }
+    body {
+      overflow-x: hidden;
+      background-color: #111;
+    }
 
-        .navigation a {
-            text-decoration: none;
-            color: #00897b; /* Color verde azulado para los enlaces */
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to right, rgb(17, 17, 17) 0%, rgb(19, 63, 71) 50%, rgb(17, 17, 17) 100%);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 30px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
 
-        .navigation a:hover {
-            background-color: #b2ebf2; /* Color de fondo celeste más claro al pasar el mouse */
-            color: #004d40; /* Texto más oscuro al pasar el mouse */
-        }
+    header a {
+  color: #00e0ff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  background: linear-gradient(120deg, #00e0ff 0%, #ffffff 50%, #00e0ff 100%);
+  background-size: 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: none;
+}
 
-        .main-content {
-            width: 100%;
-            display: flex; /* Activa Flexbox */
-            flex-direction: column; /* Apila los elementos hijos (el h1) verticalmente */
-            align-items: center; /* Centra los hijos horizontalmente en la dirección transversal (horizontal aquí) */
-            justify-content: center; /* Centra los hijos verticalmente en la dirección principal (vertical aquí) */
-            padding: 20px; /* Relleno para el área de contenido */
-            flex-grow: 1; /* Permite que esta área ocupe el espacio vertical restante */
-        }
+/* Subrayado amarillo animado */
+header a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: yellow;
+  transition: width 0.4s ease;
+}
 
-        .main-title {
-            transform: translate(0, -110%); /* Desplaza el título hacia arriba */
-            font-size: 2.8em; /* Tamaño de fuente para el título principal */
-            color: #004d40; /* Texto verde azulado oscuro */
-            margin-bottom: 40px; /* Espacio debajo del título */
-            text-align: center;
-        }
+header a:hover::after {
+  width: 100%;
+}
 
-        .container {
-            background-color: #fff; /* Fondo blanco para el contenedor principal */
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-            width: 80%;
-            max-width: 960px;
-            text-align: left; /* El texto dentro del contenedor se alinea a la izquierda */
-        }
+/* Brillo SOLO al hacer hover */
+header a:hover {
+  animation: shineText 1s forwards;
+}
 
-        /* Puedes agregar más estilos CSS aquí según necesites */
-    </style>
+@keyframes shineText {
+  0% {
+    background-position: -100%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+
+
+
+
+    section {
+      height: 100vh;
+      width: 100%;
+      padding: 100px 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    section:nth-child(odd) {
+      background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+    }
+
+    section:nth-child(even) {
+      background: linear-gradient(135deg, #2c3e50, #1a1a1a);
+    }
+
+    h1, h2 {
+      color: #00e0ff;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #ddd;
+      max-width: 800px;
+      font-size: 1.1em;
+      line-height: 1.7;
+    }
+
+    #inicio::before {
+      content: '';
+      position: absolute;
+      top: -100px; /* Para compensar el header */
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="navigation">
-        <a href="#">Bibliografía</a>
-        <a href="#">El rol del Estado</a>
-        <a href="#">Soluciones</a>
-        <a href="#">Ejemplos</a>
-        <a href="#">Tipos</a>
-        <a href="#">Definición</a>
-        <a href="#">Introducción</a>
-        <a href="#">Inicio</a>
-    </nav>
+  <header>
+    <a href="#inicio" >Inicio</a>
+    <a href="#introduccion">Introducción</a>
+    <a href="#quehacemos">¿Qué hacemos?</a>
+    <a href="#quebuscamos">¿Qué buscamos?</a>
+    <a href="#somos">Nosotros somos</a>
+    <a href="#contacto">Contacto</a>
+  </header>
 
-    <main class="main-content">
-        <h1 class="main-title">PROYECTO TESINA VECOPO</h1>
+  <section id="inicio">
+    <h1>Proyecto Tesina VECOPO</h1>
+    <p>Automatizá tu hogar como un pro. Control de ventanas, cortinas y postigones con un solo click. Tecnología al alcance de tu café.</p>
+  </section>
+
+  <section id="introduccion">
+    <h2>Introducción</h2>
+    <p>El Proyecto VECOPO surge para facilitar la gestión inteligente de ambientes domésticos. Proporcionamos una plataforma donde el usuario puede configurar horarios de apertura/cierre de distintos elementos del hogar.</p>
+  </section>
+
+  <section id="quehacemos">
+    <h2>¿Qué hacemos?</h2>
+    <p>Ofrecemos soluciones de domótica personalizadas. Creamos una interfaz intuitiva para controlar dispositivos y mejorar la eficiencia energética y el confort en casa.</p>
+  </section>
+
+  <section id="quebuscamos">
+    <h2>¿Qué buscamos?</h2>
+    <p>Apuntamos a transformar hogares comunes en espacios inteligentes, cómodos y adaptables al ritmo de vida moderno. Buscamos simplicidad, accesibilidad y estilo.</p>
+  </section>
+
+  <section id="somos">
+    <h2>Nosotros somos</h2>
+    <p>Un equipo multidisciplinario de estudiantes apasionados por la tecnología, el diseño y la automatización. Conectamos ideas con soluciones reales.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Te gustó lo que viste? Escribinos a <strong>vecopo@tesina.com</strong> o llamanos al <strong>+54 9 11 5555 1234</strong>. Estamos listos para automatizar tu mundo.</p>
+  </section>
 
 </body>
 </html>
