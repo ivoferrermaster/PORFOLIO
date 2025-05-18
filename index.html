@@ -153,27 +153,53 @@
       font-size: 1.1em;
       line-height: 1.7;
     }
-
-    #inicio::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-    }
-
     /* ESTILOS NUEVOS PARA SECCIONES DESLUMBRANTES */
   section#inicio {
-  justify-content: flex-start; /* Esto mueve el contenido a la parte superior de la sección */
-  padding-top: 90px; /* Puedes ajustar este valor para controlar la distancia desde arriba */
-  background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-}
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 90px 20px;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      overflow: hidden;
+      color: white;
+    }
+
+    section#inicio::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.4); /* Difuminado con oscurecido */
+      z-index: 0;
+    }
+
+    section#inicio h1,
+    section#inicio p {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    section#inicio h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    section#inicio p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
   #inicio p{
     color: #fff;
   }
-  
-  section h1, section h2, section p {
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-  }
-
+ 
     .copyright {
       background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(19, 63, 71, 0.8));
       padding: 25px;
@@ -224,6 +250,13 @@
       .menu-toggle {
         display: flex;
       }
+      section#inicio h1 {
+        font-size: 2rem;
+      }
+
+      section#inicio p {
+        font-size: 1rem;
+      }
     }
 
   </style>
@@ -231,7 +264,8 @@
 <body>
 
   <header>
-    <div class="menu-toggle" id="menu-toggle">
+    <div class="menu-toggle" id="menu-toggle" role="button" aria-label="Abrir menú de navegación">
+
       <div></div>
       <div></div>
       <div></div>
@@ -247,8 +281,8 @@
   </header>
 
   <section id="inicio">
-    <h1>Proyecto Tesina VECOPO</h1>
-    <p>Automatizá tu hogar como un pro. Control de ventanas, cortinas y postigones con un solo click. Tecnología al alcance de tu café.</p>
+      <h1>Proyecto Tesina VECOPO</h1>
+      <p>Automatizá tu hogar como un pro. Control de ventanas, cortinas y postigones con un solo click. Tecnología al alcance de tu café.</p>
   </section>
 
   <section id="introduccion">
@@ -282,22 +316,22 @@
     </div>
   </footer>
 
-  <script>
-  const toggle = document.getElementById('menu-toggle');
-  const nav = document.getElementById('nav-links');
-  const links = nav.querySelectorAll('a');
+    <script>
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-links');
+    const links = nav.querySelectorAll('a');
 
-  toggle.addEventListener('click', () => {
-    nav.classList.toggle('active');
-  });
-
-  // Cerrar el menú cuando se hace clic en un enlace
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('active');
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
     });
-  });
-</script>
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+      });
+    });
+  </script>
+
 
 
 </body>
