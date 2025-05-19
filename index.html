@@ -60,7 +60,7 @@
       position: relative;
       overflow: hidden;
       display: inline-block;
-      background: linear-gradient(120deg, #00e0ff 0%, #ff0000 50%, #0a272b 100%);
+      background: linear-gradient(120deg, #00e0ff 0%, #5c96c5 50%, #6de3f0 100%);
       background-size: 300%;
       background-clip: text;
       -webkit-background-clip: text;
@@ -97,17 +97,17 @@
     }
 
     .glass-box {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 2rem;
-  margin: 2rem auto;
-  width: 80%;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: white;
-}
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem auto;
+        width: 80%;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: white;
+    }
 
     .menu-toggle {
       display: none;
@@ -199,7 +199,25 @@
   #inicio p{
     color: #fff;
   }
- 
+
+    .help-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.help-image {
+  flex: 0 0 auto;
+}
+
+.help-text {
+  max-width: 500px;
+}
+
+
     .copyright {
       background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(19, 63, 71, 0.8));
       padding: 25px;
@@ -257,6 +275,15 @@
       section#inicio p {
         font-size: 1rem;
       }
+
+      .help-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+  .help-text h2 {
+    text-align: center;
+  }
     }
 
   </style>
@@ -276,6 +303,7 @@
       <a href="#quehacemos">¿Qué hacemos?</a>
       <a href="#quebuscamos">¿Qué buscamos?</a>
       <a href="#somos">Nosotros somos</a>
+      <a href="#help">Ayudanos a mejorar</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </header>
@@ -304,6 +332,20 @@
     <h2>Nosotros somos</h2>
     <p>Un equipo multidisciplinario de estudiantes apasionados por la tecnología, el diseño y la automatización. Conectamos ideas con soluciones reales.</p>
   </section>
+
+  <section id="help">
+  <div class="help-container">
+    <div class="help-image">
+      <img src="" alt="Ayuda">
+    </div>
+    <div class="help-text">
+      <h2>Ayúdanos a mejorar</h2>
+      <p>¿Tenés ideas, críticas o sugerencias brillantes? ¡Queremos escucharte! Tu opinión nos ayuda a hacer VECOPO más fuerte, más rápido, y con más café virtual.</p>
+    </div>
+  </div>
+</section>
+
+
 
   <section id="contacto">
     <h2>Contacto</h2>
