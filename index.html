@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="VECOPO - Tesina sobre automatización del hogar con control de horarios para ventanas, cortinas y postigones.">
+  <meta name="author" content="Ivo">
+
   <title>VECOPO Tesina</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -17,38 +20,26 @@
     body {
       overflow-x: hidden;
       background-color: #111;
+      position: relative;
+      min-height: 100vh;
     }
 
     header {
-    /* ... existente ... */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(to right, rgb(17, 17, 17), rgb(19, 63, 71), rgb(17, 17, 17));
-    display: flex;
-    flex-direction: row-reverse; /* de derecha a izquierda */
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  }
-
-  /* NUEVO: línea inferior del header */
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(to right, transparent, #0f30c5, transparent);
-  }
-
-    .nav-links {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to right, rgba(17, 17, 17, 0.95), rgba(19, 63, 71, 0.95), rgba(17, 17, 17, 0.95));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display: flex;
-      gap: 20px;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
     }
 
     header a {
@@ -65,7 +56,17 @@
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      
+      transition: transform 0.3s ease;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #0f30c5, transparent);
     }
 
     header a::after {
@@ -96,6 +97,98 @@
       }
     }
 
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    section {
+      min-height: 100vh;
+      width: 100%;
+      padding: 120px 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: all 0.8s ease;
+      background: rgba(17, 17, 17, 0.7);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      pointer-events: none;
+    }
+
+    section.visible {
+      opacity: 3;
+      transform: translateY(0); /* Corrección: debe ser 0 para que no haya traslación */
+      pointer-events: auto;
+    }
+
+    .help-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      text-align: left;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .help-image {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+
+    .help-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .help-text {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+
+    .help-text a {
+      color: #00e0ff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding: 5px 10px;
+    }
+
+    .help-text a:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
     .glass-box {
         background: rgba(255, 255, 255, 0.1);
         border-radius: 16px;
@@ -122,24 +215,23 @@
       background: #00e0ff;
     }
 
-    section {
-      height: 100vh;
-      width: 100%;
-      padding: 100px 60px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-    }
-
     section:nth-child(odd) {
-      background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.7), rgba(44, 62, 80, 0.7));
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
     section:nth-child(even) {
-      background: linear-gradient(135deg, #2c3e50, #1a1a1a);
+      background: linear-gradient(135deg, rgba(44, 62, 80, 0.7), rgba(26, 26, 26, 0.7));
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    /* Asegurar que la primera sección sea visible al cargar */
+    section:first-child {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     h1, h2 {
@@ -154,7 +246,7 @@
       line-height: 1.7;
     }
     /* ESTILOS NUEVOS PARA SECCIONES DESLUMBRANTES */
-  section#inicio {
+    section#inicio {
       position: relative;
       display: flex;
       flex-direction: column;
@@ -196,27 +288,45 @@
       font-size: 1.2rem;
       max-width: 600px;
     }
-  #inicio p{
-    color: #fff;
-  }
 
-    .help-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-  text-align: left;
-}
+    #inicio p{
+      color: #fff;
+    }
 
-.help-image {
-  flex: 0 0 auto;
-}
+    /* --- ESTILOS PARA LA SECCIÓN "¿Qué hacemos?" --- */
+    .quehacemos-container {
+      display: flex;
+      align-items: center; /* Centra verticalmente los elementos en desktop */
+      justify-content: center; /* Centra horizontalmente el grupo de elementos */
+      gap: 50px; /* Espacio entre la imagen y el texto */
+      flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+      text-align: left; /* Alineación del texto por defecto en desktop */
+      max-width: 1200px; /* Ancho máximo del contenedor */
+      margin: 0 auto; /* Centra el contenedor en la página */
+      flex-direction: row-reverse; /* ¡IMAGEN A LA DERECHA en desktop! */
+      padding: 20px; /* Pequeño padding alrededor del contenido del contenedor */
+    }
 
-.help-text {
-  max-width: 500px;
-}
+    .quehacemos-image {
+      flex: 1; /* Permite que la imagen ocupe espacio flexible */
+      min-width: 300px; /* Ancho mínimo antes de envolver */
+      max-width: 500px; /* Ancho máximo de la imagen */
+    }
 
+    .quehacemos-image img {
+      width: 100%; /* La imagen ocupa el 100% de su contenedor */
+      height: auto; /* Mantiene la relación de aspecto */
+      border-radius: 15px; /* Bordes redondeados */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra para el efecto flotante */
+      animation: float 6s ease-in-out infinite; /* Reutiliza la animación 'float' */
+      cursor: pointer; /* Indica que la imagen es clickeable */
+    }
+
+    .quehacemos-text {
+      flex: 1; /* Permite que el texto ocupe espacio flexible */
+      min-width: 300px; /* Ancho mínimo antes de envolver */
+      max-width: 500px; /* Ancho máximo del texto */
+    }
 
     .copyright {
       background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(19, 63, 71, 0.8));
@@ -229,7 +339,6 @@
       align-items: center;
       flex-direction: column;
     }
-
 
     .copyright::before {
       content: '';
@@ -248,51 +357,211 @@
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
-    @media (max-width: 768px) {
+    /* --- ESTILOS PARA EL MODAL DE IMAGEN --- */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1002; /* Sit on top of everything */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+      /* Usamos flexbox para centrar el contenido */
+      justify-content: center; /* Centra horizontalmente */
+      align-items: center; /* Centra verticalmente */
+    }
+
+    .modal-content {
+      display: block;
+      max-width: 90%; /* Aumentamos el ancho máximo de la imagen */
+      max-height: 90%; /* Aumentamos la altura máxima de la imagen */
+      animation-name: zoom;
+      animation-duration: 0.6s;
+      object-fit: contain; /* Asegura que la imagen completa sea visible */
+    }
+
+    @keyframes zoom {
+      from {transform: scale(0)}
+      to {transform: scale(1)}
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+      z-index: 1003; /* Asegura que esté por encima de la imagen del modal */
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Media queries para responsividad */
+    @media (max-width: 1200px) {
+      
+      header {
+        padding: 20px 20px;
+      }
+
       .nav-links {
-        position: absolute;
+        position: fixed;
         top: 60px;
         left: 0;
         width: 100%;
         flex-direction: column;
-        background: #111;
+        background: rgba(17, 17, 17, 0.98);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         display: none;
         padding: 20px 0;
         gap: 10px;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
       }
 
       .nav-links.active {
         display: flex;
+        transform: translateY(0);
       }
 
       .menu-toggle {
         display: flex;
+        z-index: 1001;
       }
+
+      section {
+        padding: 100px 20px 40px;
+      }
+
       section#inicio h1 {
         font-size: 2rem;
+        padding: 0 20px;
       }
 
       section#inicio p {
         font-size: 1rem;
+        padding: 0 20px;
+      }
+
+      /* --- ESTILOS PARA LA SECCIÓN "¿Qué hacemos?" --- */
+      .quehacemos-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;
+        text-align: left;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        flex-direction: row-reverse; /* IMAGEN A LA DERECHA en desktop! */
+      }
+
+      /* El resto de los estilos para .quehacemos-image y .quehacemos-text se mantienen */
+      .quehacemos-image {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+      }
+
+      .quehacemos-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .quehacemos-text {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
       }
 
       .help-container {
+        display: flex;
         flex-direction: column;
-        text-align: center;
+        align-items: center; /* Este es clave: centra los elementos horizontalmente en un layout de columna */
+        gap: 30px;
+        text-align: center; /* Centra el texto dentro de los elementos */
+        padding: 0; /* Eliminamos el padding vertical redundante del contenedor */
+        width: 90%; /* El contenedor ocupa el 90% del ancho disponible */
+        margin: 0 auto; /* Centra el contenedor mismo dentro de la sección */
       }
 
-  .help-text h2 {
-    text-align: center;
-  }
+      .help-image {
+        /* Eliminamos 'width: 100%;' para que 'max-width' y 'align-items' controlen mejor el tamaño y centrado */
+        max-width: 280px; /* La imagen no superará los 280px de ancho */
+        margin: 0 auto; /* Centra explícitamente la imagen dentro de su espacio */
+      }
+
+      /* Asegura que la imagen dentro de .help-image se ajuste siempre a su contenedor */
+      .help-image img {
+        max-width: 100%;
+        height: auto;
+        display: block; /* Importante para que 'margin: auto' funcione correctamente si el padre es un bloque */
+      }
+
+      .help-text {
+        width: 100%; /* El texto puede ocupar todo el ancho del contenedor */
+        max-width: 600px; /* Aunque ocupe 100%, no excederá este máximo */
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 10px; /* Pequeño padding lateral para que el texto no toque los bordes */
+        text-align: center; /* Centra el texto dentro del bloque */
+        margin: 0 auto; /* Centra el bloque de texto */
+      }
+
+      .glass-box {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 1rem auto;
+      }
+
+      /* Media Query para el modal en pantallas más pequeñas */
+      .modal-content {
+        width: 95%;
+      }
+      .close-button {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+      }
     }
 
+    @media (max-width: 480px) {
+      section {
+        padding: 80px 15px 30px;
+      }
+
+      section#inicio h1 {
+        font-size: 1.8rem;
+      }
+
+      .quehacemos-container {
+        padding: 10px; /* Reduce el padding general del contenedor en pantallas muy pequeñas */
+      }
+
+      .help-container {
+        padding: 10px; /* Reducimos el padding general del contenedor en pantallas muy pequeñas */
+      }
+    }
   </style>
 </head>
 <body>
-
+  <div id="particles-js"></div>
   <header>
     <div class="menu-toggle" id="menu-toggle" role="button" aria-label="Abrir menú de navegación">
-
       <div></div>
       <div></div>
       <div></div>
@@ -309,8 +578,8 @@
   </header>
 
   <section id="inicio">
-      <h1>Proyecto Tesina VECOPO</h1>
-      <p>Automatizá tu hogar como un pro. Control de ventanas, cortinas y postigones con un solo click. Tecnología al alcance de tu café.</p>
+    <h1>Proyecto Tesina VECOPO</h1>
+    <p>Automatizá tu hogar como un pro. Control de ventanas, cortinas y postigones con un solo click. Tecnología al alcance de tu café.</p>
   </section>
 
   <section id="introduccion">
@@ -319,10 +588,21 @@
   </section>
 
   <section id="quehacemos">
-    <h2>¿Qué hacemos?</h2>
-    <p>Ofrecemos soluciones de domótica personalizadas. Creamos una interfaz intuitiva para controlar dispositivos y mejorar la eficiencia energética y el confort en casa.</p>
+    <div class="quehacemos-container">
+      <div class="quehacemos-image"> 
+        <img src="img/capinicio.png" alt="Automatización del hogar" id="quehacemos-image-modal">
+      </div>
+      <div class="quehacemos-text"> 
+        <h2>¿Qué hacemos?</h2>
+        <p>Ofrecemos soluciones de domótica personalizadas. Creamos una interfaz intuitiva para controlar dispositivos y mejorar la eficiencia energética y el confort en casa.</p>
+      </div>
+    </div>
   </section>
 
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close-button" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
   <section id="quebuscamos">
     <h2>¿Qué buscamos?</h2>
     <p>Apuntamos a transformar hogares comunes en espacios inteligentes, cómodos y adaptables al ritmo de vida moderno. Buscamos simplicidad, accesibilidad y estilo.</p>
@@ -335,16 +615,27 @@
   </section>
 
   <section id="help">
-  <div class="help-container">
-    <div class="help-image">
-      <img src="" alt="Ayuda">
+    <div class="help-container">
+      <div class="help-image">
+        <img src="img/capformulario.png" alt="Ayuda">
+      </div>
+      <div class="help-text">
+        <h2>Ayúdanos a mejorar</h2>
+        <p>¿Tenés ideas, críticas o sugerencias brillantes? ¡Queremos escucharte! Tu opinión nos ayuda a hacer VECOPO más fuerte, más rápido, y con más efectivo para tu hogar. 
+          Apoyanos completando este formulario: <br>  
+        <a href="https://forms.gle/M53VLF9gxxWw9Ga68" target="_blank">
+            https://forms.gle/M53V
+            LF9gxxWw9Ga68
+          </a>
+        </p>
+      </div>
     </div>
-    <div class="help-text">
-      <h2>Ayúdanos a mejorar</h2>
-      <p>¿Tenés ideas, críticas o sugerencias brillantes? ¡Queremos escucharte! Tu opinión nos ayuda a hacer VECOPO más fuerte, más rápido, y con más café virtual.</p>
-    </div>
-  </div>
-</section>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Te gustó lo que viste? Escribinos a <strong>vecopo@tesina.com</strong> o llamanos al <strong>+54 9 11 5555 1234</strong>. Estamos listos para automatizar tu mundo.</p>
+  </section>
 
   <footer>
     <div class="copyright">
@@ -352,10 +643,12 @@
     </div>
   </footer>
 
-    <script>
+  <script>
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('nav-links');
     const links = nav.querySelectorAll('a');
+    const header = document.querySelector('header');
+    let currentSection = null;
 
     toggle.addEventListener('click', () => {
       nav.classList.toggle('active');
@@ -366,9 +659,141 @@
         nav.classList.remove('active');
       });
     });
+
+    // Animación de entrada para secciones
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Si hay una sección actual, la ocultamos
+          if (currentSection && currentSection !== entry.target) {
+            currentSection.classList.remove('visible');
+          }
+          // Mostramos la nueva sección
+          entry.target.classList.add('visible');
+          currentSection = entry.target;
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // --- JavaScript para el Modal de Imagen ---
+    // Get the modal
+    var modal = document.getElementById("imageModal");
+
+    // Get the image and insert it inside the modal
+    var img = document.getElementById("quehacemos-image-modal");
+    var modalImg = document.getElementById("modalImage");
+
+    img.onclick = function(){
+      // ¡CAMBIO AQUÍ! Usamos "flex" para activar el centrado de flexbox
+      modal.style.display = "flex"; 
+      modalImg.src = this.src;
+    }
+
+    // Function to close the modal
+    function closeModal() {
+      modal.style.display = "none";
+    }
   </script>
 
-
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      particlesJS('particles-js', {
+        particles: {
+          number: {
+            value: 100,
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            value: '#00e0ff'
+          },
+          shape: {
+            type: 'circle'
+          },
+          opacity: {
+            value: 0.6,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: false
+            }
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 2,
+              size_min: 0.1,
+              sync: false
+            }
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#00e0ff',
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: 'none',
+            random: true,
+            straight: false,
+            out_mode: 'out',
+            bounce: false,
+            attract: {
+              enable: true,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: {
+              enable: true,
+              mode: 'grab'
+            },
+            onclick: {
+              enable: true,
+              mode: 'push'
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_linked: {
+                opacity: 1
+              }
+            },
+            push: {
+              particles_nb: 4
+            }
+          }
+        },
+        retina_detect: true
+      });
+    });
+  </script>
 
 </body>
 </html>
