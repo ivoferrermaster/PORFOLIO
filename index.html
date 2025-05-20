@@ -406,6 +406,39 @@
       cursor: pointer;
     }
 
+    /* --- ESTILOS PARA LA SECCIÓN "RESULTADOS" --- */
+    section#Resultados {
+      padding: 80px 60px 40px; /* Menos padding superior para subir el título */
+    }
+
+    section#Resultados h2 {
+      font-size: 2.5rem; /* Título más grande */
+      margin-bottom: 30px; /* Más espacio debajo del título */
+    }
+
+    /* Contenedor para las imágenes de Resultados */
+    .results-image-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 1200px; /* Limita el ancho máximo del contenedor de imágenes */
+      margin: 0 auto; /* Centra el contenedor de imágenes */
+    }
+
+    .modal-trigger-img {
+      max-width: 400px; /* Imágenes más grandes */
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: float 6s ease-in-out infinite;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .modal-trigger-img:hover {
+      transform: scale(1.02); /* Efecto hover sutil */
+    }
     /* Media queries para responsividad */
     @media (max-width: 1200px) {
       
@@ -573,7 +606,7 @@
       <a href="#quebuscamos">¿Qué buscamos?</a>
       <a href="#somos">Nosotros somos</a>
       <a href="#help">Ayudanos a mejorar</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#Resultados">Resultados</a> 
     </nav>
   </header>
 
@@ -590,7 +623,7 @@
   <section id="quehacemos">
     <div class="quehacemos-container">
       <div class="quehacemos-image"> 
-        <img src="img/capinicio.png" alt="Automatización del hogar" id="quehacemos-image-modal">
+        <img src="img/capinicio.png" alt="Automatización del hogar" class="modal-trigger-img">
       </div>
       <div class="quehacemos-text"> 
         <h2>¿Qué hacemos?</h2>
@@ -632,17 +665,22 @@
     </div>
   </section>
 
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>¿Te gustó lo que viste? Escribinos a <strong>vecopo@tesina.com</strong> o llamanos al <strong>+54 9 11 5555 1234</strong>. Estamos listos para automatizar tu mundo.</p>
+  <section id="Resultados" style="text-align: center;">
+    <h2>Otras personas nos recomiendan!!</h2>
+    <div class="results-image-container">
+      <img src="img/capgender.png" alt="Resultados Género" class="modal-trigger-img">
+      <img src="img/capedad.png" alt="Resultados Edad" class="modal-trigger-img">
+      <img src="img/capautoma.png" alt="Resultados Automatización" class="modal-trigger-img">
+    </div>
+    
   </section>
-
   <footer>
     <div class="copyright">
       <p>&copy; 2025 VECOPO. Todos los derechos reservados.</p>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('nav-links');
@@ -686,28 +724,29 @@
     });
 
     // --- JavaScript para el Modal de Imagen ---
-    // Get the modal
     var modal = document.getElementById("imageModal");
-
-    // Get the image and insert it inside the modal
-    var img = document.getElementById("quehacemos-image-modal");
     var modalImg = document.getElementById("modalImage");
 
-    img.onclick = function(){
-      // ¡CAMBIO AQUÍ! Usamos "flex" para activar el centrado de flexbox
-      modal.style.display = "flex"; 
-      modalImg.src = this.src;
+    // Función para abrir el modal con una imagen específica
+    function openImageModal(imageSrc) {
+      modalImg.src = imageSrc;
+      modal.style.display = "flex"; // Usamos flex para el centrado
     }
 
-    // Function to close the modal
+    // Función para cerrar el modal
     function closeModal() {
       modal.style.display = "none";
     }
-  </script>
 
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
+    // Al cargar el DOM, adjuntamos los eventos de clic a todas las imágenes con la clase 'modal-trigger-img'
     document.addEventListener('DOMContentLoaded', function() {
+      const triggerImages = document.querySelectorAll('.modal-trigger-img');
+      triggerImages.forEach(imgElement => {
+        imgElement.addEventListener('click', function() {
+          openImageModal(this.src); // 'this.src' obtiene la ruta de la imagen clicada
+        });
+      });
+      // El resto del código de particlesJS y el observador de secciones sigue aquí
       particlesJS('particles-js', {
         particles: {
           number: {
