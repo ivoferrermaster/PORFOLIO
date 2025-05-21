@@ -24,11 +24,11 @@
       min-height: 100vh;
     }
 
-    /* NUEVO: Regla general para imágenes y videos */
+    /* Regla general para imágenes y videos */
     img, video {
       max-width: 100%;
       height: auto;
-      display: block; /* Ayuda a eliminar espacios extra bajo las imágenes */
+      display: block; 
     }
 
     header {
@@ -40,15 +40,14 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       display: flex;
-      flex-direction: row-reverse; /* Se mantiene para que el botón hamburguesa esté a la derecha por defecto */
+      flex-direction: row-reverse; 
       justify-content: space-between;
       align-items: center;
       padding: 15px 30px;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       transition: all 0.3s ease;
-      /* NUEVO: Añadir overflow hidden al header para contener sus hijos */
-      overflow: hidden; 
+      overflow: hidden; /* Mantenido para contener elementos */
     }
 
     header a {
@@ -139,7 +138,6 @@
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       pointer-events: none;
-      /* NUEVO: Asegurar que las secciones no desborden */
       overflow: hidden; 
     }
 
@@ -255,10 +253,10 @@
       max-width: 800px;
       font-size: 1.1em;
       line-height: 1.7;
-      word-wrap: break-word; /* NUEVO: Asegura que palabras largas se rompan si es necesario */
-      overflow-wrap: break-word; /* NUEVO: Alternativa para navegadores modernos */
+      word-wrap: break-word; 
+      overflow-wrap: break-word; 
     }
-    /* ESTILOS NUEVOS PARA SECCIONES DESLUMBRANTES */
+    
     section#inicio {
       position: relative;
       display: flex;
@@ -268,7 +266,7 @@
       padding: 90px 20px;
       height: 100vh;
       background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-      overflow: hidden; /* Asegura que el contenido del inicio no desborde */
+      overflow: hidden; 
       color: white;
     }
 
@@ -281,7 +279,7 @@
       height: 100%;
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(8px);
-      background-color: rgba(0, 0, 0, 0.4); /* Difuminado con oscurecido */
+      background-color: rgba(0, 0, 0, 0.4); 
       z-index: 0;
     }
 
@@ -306,39 +304,38 @@
       color: #fff;
     }
 
-    /* --- ESTILOS PARA LA SECCIÓN "¿Qué hacemos?" --- */
     .quehacemos-container {
       display: flex;
-      align-items: center; /* Centra verticalmente los elementos en desktop */
-      justify-content: center; /* Centra horizontalmente el grupo de elementos */
-      gap: 50px; /* Espacio entre la imagen y el texto */
-      flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-      text-align: left; /* Alineación del texto por defecto en desktop */
-      max-width: 1200px; /* Ancho máximo del contenedor */
-      margin: 0 auto; /* Centra el contenedor en la página */
-      flex-direction: row-reverse; /* ¡IMAGEN A LA DERECHA en desktop! */
-      padding: 20px; /* Pequeño padding alrededor del contenido del contenedor */
+      align-items: center; 
+      justify-content: center; 
+      gap: 50px; 
+      flex-wrap: wrap; 
+      text-align: left; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      flex-direction: row-reverse; 
+      padding: 20px; 
     }
 
     .quehacemos-image {
-      flex: 1; /* Permite que la imagen ocupe espacio flexible */
-      min-width: 300px; /* Ancho mínimo antes de envolver */
-      max-width: 500px; /* Ancho máximo de la imagen */
+      flex: 1; 
+      min-width: 300px; 
+      max-width: 500px; 
     }
 
     .quehacemos-image img {
-      width: 100%; /* La imagen ocupa el 100% de su contenedor */
-      height: auto; /* Mantiene la relación de aspecto */
-      border-radius: 15px; /* Bordes redondeados */
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra para el efecto flotante */
-      animation: float 6s ease-in-out infinite; /* Reutiliza la animación 'float' */
-      cursor: pointer; /* Indica que la imagen es clickeable */
+      width: 100%; 
+      height: auto; 
+      border-radius: 15px; 
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+      animation: float 6s ease-in-out infinite; 
+      cursor: pointer; 
     }
 
     .quehacemos-text {
-      flex: 1; /* Permite que el texto ocupe espacio flexible */
-      min-width: 300px; /* Ancho mínimo antes de envolver */
-      max-width: 500px; /* Ancho máximo del texto */
+      flex: 1; 
+      min-width: 300px; 
+      max-width: 500px; 
     }
 
     .copyright {
@@ -372,27 +369,26 @@
 
     /* --- ESTILOS PARA EL MODAL DE IMAGEN --- */
     .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1002; /* Sit on top of everything */
+      display: none; 
+      position: fixed; 
+      z-index: 1002; 
       left: 0;
       top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-      /* Usamos flexbox para centrar el contenido */
-      justify-content: center; /* Centra horizontalmente */
-      align-items: center; /* Centra verticalmente */
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.9); 
+      justify-content: center; 
+      align-items: center; 
     }
 
     .modal-content {
       display: block;
-      max-width: 90%; /* Aumentamos el ancho máximo de la imagen */
-      max-height: 90%; /* Aumentamos la altura máxima de la imagen */
+      max-width: 90%; 
+      max-height: 90%; 
       animation-name: zoom;
       animation-duration: 0.6s;
-      object-fit: contain; /* Asegura que la imagen completa sea visible */
+      object-fit: contain; 
     }
 
     @keyframes zoom {
@@ -409,7 +405,7 @@
       font-weight: bold;
       transition: 0.3s;
       cursor: pointer;
-      z-index: 1003; /* Asegura que esté por encima de la imagen del modal */
+      z-index: 1003; 
     }
 
     .close-button:hover,
@@ -434,24 +430,28 @@
     .results-image-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 20px; /* Se mantiene para desktop */
       flex-wrap: wrap;
-      max-width: 1200px; /* Limita el ancho máximo del contenedor de imágenes */
-      margin: 0 auto; /* Centra el contenedor de imágenes */
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 10px; /* Agregado para asegurar espacio en los bordes en móvil */
     }
 
     .modal-trigger-img {
-      max-width: 400px; /* Imágenes más grandes */
+      max-width: 400px; 
       height: auto;
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       animation: float 6s ease-in-out infinite;
       cursor: pointer;
       transition: transform 0.3s ease;
+      /* AJUSTADO: Se asegura que las imágenes no sean más grandes que su contenedor directo */
+      flex-basis: calc(50% - 10px); /* Intenta poner 2 imágenes por fila en tamaños medianos */
+      min-width: 250px; /* Evita que se hagan demasiado pequeñas */
     }
 
     .modal-trigger-img:hover {
-      transform: scale(1.02); /* Efecto hover sutil */
+      transform: scale(1.02); 
     }
 
     /* Media queries para responsividad */
@@ -459,7 +459,7 @@
       
       header {
         padding: 20px 20px;
-        flex-direction: row-reverse; /* AJUSTADO: Mantiene el botón a la derecha */
+        flex-direction: row-reverse; 
         justify-content: space-between;
       }
 
@@ -473,16 +473,21 @@
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         
-        display: none; 
-        padding: 20px 0;
-        gap: 10px;
-        opacity: 0; /* AJUSTADO: Se mantiene la opacidad para la transición */
-        transition: opacity 0.3s ease; 
+        /* AJUSTADO PARA EL BOTÓN HAMBURGUESA */
+        opacity: 0; /* Oculto por defecto */
+        visibility: hidden; /* Oculto del flujo y no interactivo */
+        max-height: 0; /* Colapsa verticalmente para no ocupar espacio */
+        overflow: hidden; /* Corta cualquier contenido que se desborde */
+        transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease-out; /* Transiciones suaves */
+        padding: 0; /* Resetear padding para la transición de max-height */
+        margin: 0; /* Resetear margin */
       }
 
       .nav-links.active {
-        display: flex; 
         opacity: 1; 
+        visibility: visible; 
+        max-height: 300px; /* Suficiente para mostrar los enlaces */
+        padding: 20px 0; /* Volver a poner el padding cuando está activo */
       }
 
       .menu-toggle {
@@ -504,23 +509,21 @@
         padding: 0 20px;
       }
 
-      /* --- ESTILOS para la sección "¿Qué hacemos?" y "Ayudanos a mejorar" --- */
-      /* Estos se mantienen como antes porque ya eran bastante robustos */
       .quehacemos-container, .help-container {
-        flex-direction: column; /* Para móviles, apilamos la imagen y el texto */
-        text-align: center; /* Centramos el texto cuando están apilados */
+        flex-direction: column; 
+        text-align: center; 
       }
 
       .quehacemos-image, .help-image {
-        min-width: unset; /* Reinicia el min-width */
-        max-width: 90%; /* Ajusta el tamaño de la imagen para móviles */
-        margin: 0 auto; /* Centra la imagen */
+        min-width: unset; 
+        max-width: 90%; 
+        margin: 0 auto; 
       }
       
       .quehacemos-text, .help-text {
-        min-width: unset; /* Reinicia el min-width */
-        max-width: 100%; /* El texto ocupa el 100% de su contenedor */
-        padding: 0 15px; /* Pequeño padding lateral para el texto */
+        min-width: unset; 
+        max-width: 100%; 
+        padding: 0 15px; 
       }
 
       .glass-box {
@@ -529,7 +532,17 @@
         margin: 1rem auto;
       }
 
-      /* Media Query para el modal en pantallas más pequeñas */
+      /* AJUSTADO: Resultados en móviles */
+      .results-image-container {
+        gap: 15px; /* Reducir el gap en móviles */
+        padding: 0 5px; /* Ajustar padding del contenedor para evitar desbordamiento */
+      }
+
+      .modal-trigger-img {
+        max-width: 100%; /* Asegurar que la imagen no exceda el 100% del contenedor */
+        flex-basis: 100%; /* Una imagen por fila en pantallas pequeñas */
+      }
+
       .modal-content {
         width: 95%;
       }
@@ -538,6 +551,20 @@
         right: 20px;
         font-size: 30px;
       }
+    }
+
+    @media (max-width: 768px) {
+        /* Para asegurar que las imágenes de resultados se muestren una debajo de la otra en pantallas aún más pequeñas */
+        .results-image-container {
+            flex-direction: column;
+            align-items: center; /* Centra las imágenes cuando están en columna */
+            gap: 15px;
+            padding: 0 10px; /* Ajusta padding */
+        }
+        .modal-trigger-img {
+            width: 90%; /* Las imágenes ocupan el 90% del ancho del contenedor */
+            max-width: 350px; /* Pero no exceden un tamaño razonable */
+        }
     }
 
     @media (max-width: 480px) {
@@ -575,6 +602,7 @@
       <a href="#somos">Nosotros somos</a>
       <a href="#help">Ayudanos a mejorar</a>
       <a href="#Resultados">Resultados</a> 
+      <a href="#conclusion">Conclusión</a> 
     </nav>
   </header>
 
@@ -640,15 +668,21 @@
       <img src="img/capedad.png" alt="Resultados Edad" class="modal-trigger-img">
       <img src="img/capautoma.png" alt="Resultados Automatización" class="modal-trigger-img">
     </div>
-    
   </section>
+
+  <section id="conclusion">
+    <h2>Conclusión</h2>
+    <p>la conclusion a la q se llego fue positiva debido a q un 60% de las personas les agrada la idea de automatizar sus v,c,p , a su vez el 20% pagaria 200k por el producto y el 10% pagaria mas de 500k.</p>
+    <p>Agradecemos tu interés y apoyo en hacer de VECOPO una realidad que simplifique la vida moderna.</p>
+  </section>
+
   <footer>
     <div class="copyright">
       <p>&copy; 2025 VECOPO. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('nav-links');
