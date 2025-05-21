@@ -18,17 +18,10 @@
     }
 
     body {
-      overflow-x: hidden; /* Esto es clave para evitar scroll horizontal indeseado */
+      overflow-x: hidden;
       background-color: #111;
       position: relative;
       min-height: 100vh;
-    }
-
-    /* Regla general para imágenes y videos */
-    img, video {
-      max-width: 100%;
-      height: auto;
-      display: block; 
     }
 
     header {
@@ -40,14 +33,13 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       display: flex;
-      flex-direction: row-reverse; 
+      flex-direction: row-reverse;
       justify-content: space-between;
       align-items: center;
       padding: 15px 30px;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       transition: all 0.3s ease;
-      overflow: hidden; /* Mantenido para contener elementos */
     }
 
     header a {
@@ -138,12 +130,11 @@
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       pointer-events: none;
-      overflow: hidden; 
     }
 
     section.visible {
-      opacity: 1; 
-      transform: translateY(0);
+      opacity: 3;
+      transform: translateY(0); /* Corrección: debe ser 0 para que no haya traslación */
       pointer-events: auto;
     }
 
@@ -253,10 +244,8 @@
       max-width: 800px;
       font-size: 1.1em;
       line-height: 1.7;
-      word-wrap: break-word; 
-      overflow-wrap: break-word; 
     }
-    
+    /* ESTILOS NUEVOS PARA SECCIONES DESLUMBRANTES */
     section#inicio {
       position: relative;
       display: flex;
@@ -266,7 +255,7 @@
       padding: 90px 20px;
       height: 100vh;
       background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-      overflow: hidden; 
+      overflow: hidden;
       color: white;
     }
 
@@ -279,7 +268,7 @@
       height: 100%;
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(8px);
-      background-color: rgba(0, 0, 0, 0.4); 
+      background-color: rgba(0, 0, 0, 0.4); /* Difuminado con oscurecido */
       z-index: 0;
     }
 
@@ -304,38 +293,39 @@
       color: #fff;
     }
 
+    /* --- ESTILOS PARA LA SECCIÓN "¿Qué hacemos?" --- */
     .quehacemos-container {
       display: flex;
-      align-items: center; 
-      justify-content: center; 
-      gap: 50px; 
-      flex-wrap: wrap; 
-      text-align: left; 
-      max-width: 1200px; 
-      margin: 0 auto; 
-      flex-direction: row-reverse; 
-      padding: 20px; 
+      align-items: center; /* Centra verticalmente los elementos en desktop */
+      justify-content: center; /* Centra horizontalmente el grupo de elementos */
+      gap: 50px; /* Espacio entre la imagen y el texto */
+      flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+      text-align: left; /* Alineación del texto por defecto en desktop */
+      max-width: 1200px; /* Ancho máximo del contenedor */
+      margin: 0 auto; /* Centra el contenedor en la página */
+      flex-direction: row-reverse; /* ¡IMAGEN A LA DERECHA en desktop! */
+      padding: 20px; /* Pequeño padding alrededor del contenido del contenedor */
     }
 
     .quehacemos-image {
-      flex: 1; 
-      min-width: 300px; 
-      max-width: 500px; 
+      flex: 1; /* Permite que la imagen ocupe espacio flexible */
+      min-width: 300px; /* Ancho mínimo antes de envolver */
+      max-width: 500px; /* Ancho máximo de la imagen */
     }
 
     .quehacemos-image img {
-      width: 100%; 
-      height: auto; 
-      border-radius: 15px; 
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
-      animation: float 6s ease-in-out infinite; 
-      cursor: pointer; 
+      width: 100%; /* La imagen ocupa el 100% de su contenedor */
+      height: auto; /* Mantiene la relación de aspecto */
+      border-radius: 15px; /* Bordes redondeados */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra para el efecto flotante */
+      animation: float 6s ease-in-out infinite; /* Reutiliza la animación 'float' */
+      cursor: pointer; /* Indica que la imagen es clickeable */
     }
 
     .quehacemos-text {
-      flex: 1; 
-      min-width: 300px; 
-      max-width: 500px; 
+      flex: 1; /* Permite que el texto ocupe espacio flexible */
+      min-width: 300px; /* Ancho mínimo antes de envolver */
+      max-width: 500px; /* Ancho máximo del texto */
     }
 
     .copyright {
@@ -369,26 +359,27 @@
 
     /* --- ESTILOS PARA EL MODAL DE IMAGEN --- */
     .modal {
-      display: none; 
-      position: fixed; 
-      z-index: 1002; 
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1002; /* Sit on top of everything */
       left: 0;
       top: 0;
-      width: 100%; 
-      height: 100%; 
-      overflow: auto; 
-      background-color: rgba(0,0,0,0.9); 
-      justify-content: center; 
-      align-items: center; 
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+      /* Usamos flexbox para centrar el contenido */
+      justify-content: center; /* Centra horizontalmente */
+      align-items: center; /* Centra verticalmente */
     }
 
     .modal-content {
       display: block;
-      max-width: 90%; 
-      max-height: 90%; 
+      max-width: 90%; /* Aumentamos el ancho máximo de la imagen */
+      max-height: 90%; /* Aumentamos la altura máxima de la imagen */
       animation-name: zoom;
       animation-duration: 0.6s;
-      object-fit: contain; 
+      object-fit: contain; /* Asegura que la imagen completa sea visible */
     }
 
     @keyframes zoom {
@@ -405,7 +396,7 @@
       font-weight: bold;
       transition: 0.3s;
       cursor: pointer;
-      z-index: 1003; 
+      z-index: 1003; /* Asegura que esté por encima de la imagen del modal */
     }
 
     .close-button:hover,
@@ -417,46 +408,40 @@
 
     /* --- ESTILOS PARA LA SECCIÓN "RESULTADOS" --- */
     section#Resultados {
-      padding: 60px 60px 40px; 
-      margin-top: -20px; 
+      padding: 80px 60px 40px; /* Menos padding superior para subir el título */
     }
 
     section#Resultados h2 {
-      font-size: 2.5rem; 
-      margin-bottom: 30px; 
+      font-size: 2.5rem; /* Título más grande */
+      margin-bottom: 30px; /* Más espacio debajo del título */
     }
 
     /* Contenedor para las imágenes de Resultados */
     .results-image-container {
       display: flex;
       justify-content: center;
-      gap: 20px; /* Se mantiene para desktop */
+      gap: 20px;
       flex-wrap: wrap;
-      max-width: 1200px; 
-      margin: 0 auto; 
-      padding: 0 10px; /* Agregado para asegurar espacio en los bordes en móvil */
+      max-width: 1200px; /* Limita el ancho máximo del contenedor de imágenes */
+      margin: 0 auto; /* Centra el contenedor de imágenes */
     }
 
     .modal-trigger-img {
-      max-width: 400px; 
+      max-width: 400px; /* Imágenes más grandes */
       height: auto;
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       animation: float 6s ease-in-out infinite;
       cursor: pointer;
       transition: transform 0.3s ease;
-      /* AJUSTADO: Se asegura que las imágenes no sean más grandes que su contenedor directo */
-      flex-basis: calc(50% - 10px); /* Intenta poner 2 imágenes por fila en tamaños medianos */
-      min-width: 250px; /* Evita que se hagan demasiado pequeñas */
     }
 
     .modal-trigger-img:hover {
-      transform: scale(1.02); 
+      transform: scale(1.02); /* Efecto hover sutil */
     }
-
     /* Media queries para responsividad */
     @media (max-width: 1200px) {
-      
+
       header {
         padding: 20px 20px;
         flex-direction: row-reverse; 
@@ -473,21 +458,22 @@
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         
-        /* AJUSTADO PARA EL BOTÓN HAMBURGUESA */
-        opacity: 0; /* Oculto por defecto */
-        visibility: hidden; /* Oculto del flujo y no interactivo */
-        max-height: 0; /* Colapsa verticalmente para no ocupar espacio */
-        overflow: hidden; /* Corta cualquier contenido que se desborde */
-        transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease-out; /* Transiciones suaves */
-        padding: 0; /* Resetear padding para la transición de max-height */
-        margin: 0; /* Resetear margin */
+        /* CAMBIOS CLAVE PARA EL MENÚ HAMBURGUESA */
+        visibility: hidden; /* Oculta el elemento sin quitarlo del flujo */
+        opacity: 0; /* Lo hace invisible */
+        padding: 20px 0;
+        gap: 10px;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s; /* Transición para transform y opacity, y visibility retrasada */
       }
 
       .nav-links.active {
-        opacity: 1; 
-        visibility: visible; 
-        max-height: 300px; /* Suficiente para mostrar los enlaces */
-        padding: 20px 0; /* Volver a poner el padding cuando está activo */
+        display: flex;
+        visibility: visible; /* Hace el menú visible */
+        opacity: 1; /* Lo hace completamente opaco */
+        transform: translateY(0);
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s; /* Elimina el retraso de visibility */
       }
 
       .menu-toggle {
@@ -509,21 +495,73 @@
         padding: 0 20px;
       }
 
-      .quehacemos-container, .help-container {
-        flex-direction: column; 
-        text-align: center; 
+      /* --- ESTILOS PARA LA SECCIÓN "¿Qué hacemos?" --- */
+      .quehacemos-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;
+        text-align: left;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        flex-direction: row-reverse; /* IMAGEN A LA DERECHA en desktop! */
       }
 
-      .quehacemos-image, .help-image {
-        min-width: unset; 
-        max-width: 90%; 
-        margin: 0 auto; 
+      /* El resto de los estilos para .quehacemos-image y .quehacemos-text se mantienen */
+      .quehacemos-image {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
       }
-      
-      .quehacemos-text, .help-text {
-        min-width: unset; 
-        max-width: 100%; 
-        padding: 0 15px; 
+
+      .quehacemos-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .quehacemos-text {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+      }
+
+      .help-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Este es clave: centra los elementos horizontalmente en un layout de columna */
+        gap: 30px;
+        text-align: center; /* Centra el texto dentro de los elementos */
+        padding: 0; /* Eliminamos el padding vertical redundante del contenedor */
+        width: 90%; /* El contenedor ocupa el 90% del ancho disponible */
+        margin: 0 auto; /* Centra el contenedor mismo dentro de la sección */
+      }
+
+      .help-image {
+        /* Eliminamos 'width: 100%;' para que 'max-width' y 'align-items' controlen mejor el tamaño y centrado */
+        max-width: 280px; /* La imagen no superará los 280px de ancho */
+        margin: 0 auto; /* Centra explícitamente la imagen dentro de su espacio */
+      }
+
+      /* Asegura que la imagen dentro de .help-image se ajuste siempre a su contenedor */
+      .help-image img {
+        max-width: 100%;
+        height: auto;
+        display: block; /* Importante para que 'margin: auto' funcione correctamente si el padre es un bloque */
+      }
+
+      .help-text {
+        width: 100%; /* El texto puede ocupar todo el ancho del contenedor */
+        max-width: 600px; /* Aunque ocupe 100%, no excederá este máximo */
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 10px; /* Pequeño padding lateral para que el texto no toque los bordes */
+        text-align: center; /* Centra el texto dentro del bloque */
+        margin: 0 auto; /* Centra el bloque de texto */
       }
 
       .glass-box {
@@ -532,17 +570,7 @@
         margin: 1rem auto;
       }
 
-      /* AJUSTADO: Resultados en móviles */
-      .results-image-container {
-        gap: 15px; /* Reducir el gap en móviles */
-        padding: 0 5px; /* Ajustar padding del contenedor para evitar desbordamiento */
-      }
-
-      .modal-trigger-img {
-        max-width: 100%; /* Asegurar que la imagen no exceda el 100% del contenedor */
-        flex-basis: 100%; /* Una imagen por fila en pantallas pequeñas */
-      }
-
+      /* Media Query para el modal en pantallas más pequeñas */
       .modal-content {
         width: 95%;
       }
@@ -553,7 +581,7 @@
       }
     }
 
-    @media (max-width: 768px) {
+     @media (max-width: 768px) {
         /* Para asegurar que las imágenes de resultados se muestren una debajo de la otra en pantallas aún más pequeñas */
         .results-image-container {
             flex-direction: column;
@@ -566,6 +594,7 @@
             max-width: 350px; /* Pero no exceden un tamaño razonable */
         }
     }
+
 
     @media (max-width: 480px) {
       section {
@@ -672,7 +701,10 @@
 
   <section id="conclusion">
     <h2>Conclusión</h2>
-    <p>la conclusion a la q se llego fue positiva debido a q un 60% de las personas les agrada la idea de automatizar sus v,c,p , a su vez el 20% pagaria 200k por el producto y el 10% pagaria mas de 500k.</p>
+    <p>la conclusion a la q se llego fue positiva debido a que un 60%
+       de las personas les agrada la idea de automatizar sus ventanas, cortinas y postigones , 
+       a su vez el 20% pagaria 200.000 mil pesos por el producto y el 
+       10% pagaria mas de 500.000 mil pesos.</p>
     <p>Agradecemos tu interés y apoyo en hacer de VECOPO una realidad que simplifique la vida moderna.</p>
   </section>
 
@@ -682,7 +714,7 @@
     </div>
   </footer>
 
-   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('nav-links');
