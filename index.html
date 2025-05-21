@@ -455,16 +455,21 @@
         background: rgba(17, 17, 17, 0.98);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        display: none;
+        
+        /* CAMBIOS CLAVE PARA EL MENÚ HAMBURGUESA */
+        visibility: hidden; /* Oculta el elemento sin quitarlo del flujo */
+        opacity: 0; /* Lo hace invisible */
         padding: 20px 0;
         gap: 10px;
         transform: translateY(-100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s; /* Transición para transform y opacity, y visibility retrasada */
       }
 
       .nav-links.active {
-        display: flex;
+        visibility: visible; /* Hace el menú visible */
+        opacity: 1; /* Lo hace completamente opaco */
         transform: translateY(0);
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s; /* Elimina el retraso de visibility */
       }
 
       .menu-toggle {
@@ -643,8 +648,8 @@
 
   <section id="somos">
     <h2>Nosotros somos</h2>
-    <p>Un equipo multidisciplinario de estudiantes apasionados por la tecnología, el diseño y la automatización. Conectamos ideas con soluciones reales
-      contactanos a traves de...</p>
+    <p>Un equipo multidisciplinario de estudiantes apasionados por la tecnología, el diseño y la automatización. 
+      Contactanos a traves de...</p>
   </section>
 
   <section id="help">
