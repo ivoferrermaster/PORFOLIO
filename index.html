@@ -18,7 +18,7 @@
     }
 
     body {
-      overflow-x: hidden;
+      overflow-x: hidden; /* Esto es clave para evitar scroll horizontal indeseado */
       background-color: #111;
       position: relative;
       min-height: 100vh;
@@ -33,7 +33,7 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       display: flex;
-      flex-direction: row-reverse;
+      flex-direction: row-reverse; /* Se mantiene para que el botón hamburguesa esté a la derecha por defecto */
       justify-content: space-between;
       align-items: center;
       padding: 15px 30px;
@@ -133,8 +133,8 @@
     }
 
     section.visible {
-      opacity: 3;
-      transform: translateY(0); /* Corrección: debe ser 0 para que no haya traslación */
+      opacity: 1; /* MODIFICADO: Cambiado de 3 a 1 para un valor de opacidad estándar */
+      transform: translateY(0);
       pointer-events: auto;
     }
 
@@ -408,7 +408,8 @@
 
     /* --- ESTILOS PARA LA SECCIÓN "RESULTADOS" --- */
     section#Resultados {
-      padding: 80px 60px 40px; /* Menos padding superior para subir el título */
+      padding: 60px 60px 40px; /* Reduje el padding superior en 20px */
+      margin-top: -20px; /* Agregué un margen superior negativo para subir la sección */
     }
 
     section#Resultados h2 {
@@ -439,11 +440,17 @@
     .modal-trigger-img:hover {
       transform: scale(1.02); /* Efecto hover sutil */
     }
+
     /* Media queries para responsividad */
     @media (max-width: 1200px) {
       
       header {
         padding: 20px 20px;
+        /* MODIFICADO: Ajusta la dirección de flex para que el toggle esté a la izquierda si es más convencional */
+        /* Si quieres el toggle a la derecha y el título/logo a la izquierda, manten flex-direction: row-reverse; */
+        /* y asegúrate de que el título/logo no tenga un ancho fijo que empuje el toggle */
+        flex-direction: row; /* o row-reverse si quieres el toggle a la derecha */
+        justify-content: space-between; /* Mantiene la distribución entre elementos */
       }
 
       .nav-links {
@@ -456,20 +463,20 @@
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         
-        /* CAMBIOS CLAVE PARA EL MENÚ HAMBURGUESA */
-        visibility: hidden; /* Oculta el elemento sin quitarlo del flujo */
-        opacity: 0; /* Lo hace invisible */
+        /* CAMBIOS CLAVE PARA EL MENÚ HAMBURGUESA Y EL DESBORDAMIENTO */
+        /* Al principio, lo ocultamos completamente con display: none */
+        display: none; /* MODIFICADO: Oculta el elemento del flujo cuando no está activo */
         padding: 20px 0;
         gap: 10px;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s; /* Transición para transform y opacity, y visibility retrasada */
+        /* transform: translateY(-100%); Se eliminará la transición de transform aquí */
+        /* transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s; No es necesario si usamos display: none */
+        transition: opacity 0.3s ease; /* Solo transicionamos la opacidad */
       }
 
       .nav-links.active {
-        visibility: visible; /* Hace el menú visible */
+        display: flex; /* MODIFICADO: Cuando está activo, vuelve a ser flex */
         opacity: 1; /* Lo hace completamente opaco */
-        transform: translateY(0);
-        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s; /* Elimina el retraso de visibility */
+        transform: translateY(0); /* Si quieres un efecto de deslizamiento, añade esta línea y ajusta transition */
       }
 
       .menu-toggle {
