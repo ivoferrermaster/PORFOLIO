@@ -24,6 +24,13 @@
       min-height: 100vh;
     }
 
+    /* NUEVO: Regla general para imágenes y videos */
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block; /* Ayuda a eliminar espacios extra bajo las imágenes */
+    }
+
     header {
       position: fixed;
       top: 0;
@@ -40,6 +47,8 @@
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       transition: all 0.3s ease;
+      /* NUEVO: Añadir overflow hidden al header para contener sus hijos */
+      overflow: hidden; 
     }
 
     header a {
@@ -130,10 +139,12 @@
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       pointer-events: none;
+      /* NUEVO: Asegurar que las secciones no desborden */
+      overflow: hidden; 
     }
 
     section.visible {
-      opacity: 1; /* MODIFICADO: Cambiado de 3 a 1 para un valor de opacidad estándar */
+      opacity: 1; 
       transform: translateY(0);
       pointer-events: auto;
     }
@@ -244,6 +255,8 @@
       max-width: 800px;
       font-size: 1.1em;
       line-height: 1.7;
+      word-wrap: break-word; /* NUEVO: Asegura que palabras largas se rompan si es necesario */
+      overflow-wrap: break-word; /* NUEVO: Alternativa para navegadores modernos */
     }
     /* ESTILOS NUEVOS PARA SECCIONES DESLUMBRANTES */
     section#inicio {
@@ -255,7 +268,7 @@
       padding: 90px 20px;
       height: 100vh;
       background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-      overflow: hidden;
+      overflow: hidden; /* Asegura que el contenido del inicio no desborde */
       color: white;
     }
 
@@ -408,13 +421,13 @@
 
     /* --- ESTILOS PARA LA SECCIÓN "RESULTADOS" --- */
     section#Resultados {
-      padding: 60px 60px 40px; /* Reduje el padding superior en 20px */
-      margin-top: -20px; /* Agregué un margen superior negativo para subir la sección */
+      padding: 60px 60px 40px; 
+      margin-top: -20px; 
     }
 
     section#Resultados h2 {
-      font-size: 2.5rem; /* Título más grande */
-      margin-bottom: 30px; /* Más espacio debajo del título */
+      font-size: 2.5rem; 
+      margin-bottom: 30px; 
     }
 
     /* Contenedor para las imágenes de Resultados */
@@ -446,11 +459,8 @@
       
       header {
         padding: 20px 20px;
-        /* MODIFICADO: Ajusta la dirección de flex para que el toggle esté a la izquierda si es más convencional */
-        /* Si quieres el toggle a la derecha y el título/logo a la izquierda, manten flex-direction: row-reverse; */
-        /* y asegúrate de que el título/logo no tenga un ancho fijo que empuje el toggle */
-        flex-direction: row; /* o row-reverse si quieres el toggle a la derecha */
-        justify-content: space-between; /* Mantiene la distribución entre elementos */
+        flex-direction: row-reverse; /* AJUSTADO: Mantiene el botón a la derecha */
+        justify-content: space-between;
       }
 
       .nav-links {
@@ -463,20 +473,16 @@
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         
-        /* CAMBIOS CLAVE PARA EL MENÚ HAMBURGUESA Y EL DESBORDAMIENTO */
-        /* Al principio, lo ocultamos completamente con display: none */
-        display: none; /* MODIFICADO: Oculta el elemento del flujo cuando no está activo */
+        display: none; 
         padding: 20px 0;
         gap: 10px;
-        /* transform: translateY(-100%); Se eliminará la transición de transform aquí */
-        /* transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s; No es necesario si usamos display: none */
-        transition: opacity 0.3s ease; /* Solo transicionamos la opacidad */
+        opacity: 0; /* AJUSTADO: Se mantiene la opacidad para la transición */
+        transition: opacity 0.3s ease; 
       }
 
       .nav-links.active {
-        display: flex; /* MODIFICADO: Cuando está activo, vuelve a ser flex */
-        opacity: 1; /* Lo hace completamente opaco */
-        transform: translateY(0); /* Si quieres un efecto de deslizamiento, añade esta línea y ajusta transition */
+        display: flex; 
+        opacity: 1; 
       }
 
       .menu-toggle {
@@ -498,73 +504,23 @@
         padding: 0 20px;
       }
 
-      /* --- ESTILOS PARA LA SECCIÓN "¿Qué hacemos?" --- */
-      .quehacemos-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 50px;
-        flex-wrap: wrap;
-        text-align: left;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        flex-direction: row-reverse; /* IMAGEN A LA DERECHA en desktop! */
+      /* --- ESTILOS para la sección "¿Qué hacemos?" y "Ayudanos a mejorar" --- */
+      /* Estos se mantienen como antes porque ya eran bastante robustos */
+      .quehacemos-container, .help-container {
+        flex-direction: column; /* Para móviles, apilamos la imagen y el texto */
+        text-align: center; /* Centramos el texto cuando están apilados */
       }
 
-      /* El resto de los estilos para .quehacemos-image y .quehacemos-text se mantienen */
-      .quehacemos-image {
-        flex: 1;
-        min-width: 300px;
-        max-width: 500px;
+      .quehacemos-image, .help-image {
+        min-width: unset; /* Reinicia el min-width */
+        max-width: 90%; /* Ajusta el tamaño de la imagen para móviles */
+        margin: 0 auto; /* Centra la imagen */
       }
-
-      .quehacemos-image img {
-        width: 100%;
-        height: auto;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        animation: float 6s ease-in-out infinite;
-      }
-
-      .quehacemos-text {
-        flex: 1;
-        min-width: 300px;
-        max-width: 500px;
-      }
-
-      .help-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Este es clave: centra los elementos horizontalmente en un layout de columna */
-        gap: 30px;
-        text-align: center; /* Centra el texto dentro de los elementos */
-        padding: 0; /* Eliminamos el padding vertical redundante del contenedor */
-        width: 90%; /* El contenedor ocupa el 90% del ancho disponible */
-        margin: 0 auto; /* Centra el contenedor mismo dentro de la sección */
-      }
-
-      .help-image {
-        /* Eliminamos 'width: 100%;' para que 'max-width' y 'align-items' controlen mejor el tamaño y centrado */
-        max-width: 280px; /* La imagen no superará los 280px de ancho */
-        margin: 0 auto; /* Centra explícitamente la imagen dentro de su espacio */
-      }
-
-      /* Asegura que la imagen dentro de .help-image se ajuste siempre a su contenedor */
-      .help-image img {
-        max-width: 100%;
-        height: auto;
-        display: block; /* Importante para que 'margin: auto' funcione correctamente si el padre es un bloque */
-      }
-
-      .help-text {
-        width: 100%; /* El texto puede ocupar todo el ancho del contenedor */
-        max-width: 600px; /* Aunque ocupe 100%, no excederá este máximo */
-        font-size: 1rem;
-        line-height: 1.6;
-        padding: 0 10px; /* Pequeño padding lateral para que el texto no toque los bordes */
-        text-align: center; /* Centra el texto dentro del bloque */
-        margin: 0 auto; /* Centra el bloque de texto */
+      
+      .quehacemos-text, .help-text {
+        min-width: unset; /* Reinicia el min-width */
+        max-width: 100%; /* El texto ocupa el 100% de su contenedor */
+        padding: 0 15px; /* Pequeño padding lateral para el texto */
       }
 
       .glass-box {
@@ -594,11 +550,11 @@
       }
 
       .quehacemos-container {
-        padding: 10px; /* Reduce el padding general del contenedor en pantallas muy pequeñas */
+        padding: 10px; 
       }
 
       .help-container {
-        padding: 10px; /* Reducimos el padding general del contenedor en pantallas muy pequeñas */
+        padding: 10px; 
       }
     }
   </style>
