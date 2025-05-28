@@ -29,7 +29,7 @@
     img, video {
       max-width: 100%;
       height: auto;
-      display: block; 
+      display: block;
     }
 
     /* HEADER GENERAL */
@@ -204,6 +204,15 @@
     h1, h2 {
       color: #00e0ff;
       margin-bottom: 20px;
+    }
+
+    h3 {
+      color: #00e0ff; /* Color para los subtítulos dentro de las secciones */
+      margin-top: 30px;
+      margin-bottom: 15px;
+      text-align: left; /* Alineado a la izquierda */
+      width: 100%; /* Ocupa todo el ancho */
+      max-width: 900px; /* Alineado con el contenedor principal si aplica */
     }
 
     p {
@@ -473,12 +482,40 @@
         color: white;
     }
 
-    /* NUEVOS ESTILOS PARA LA TABLA COMPARATIVA */
+    /* ESTILOS PARA LA SECCIÓN DE ANÁLISIS DE COMPETENCIA */
+    section#analisis-competencia {
+      padding: 80px 60px 40px;
+      text-align: center; /* Centrar el contenido de la sección */
+    }
+
+    section#analisis-competencia h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    section#analisis-competencia p {
+      max-width: 900px; /* Aumentar ancho de párrafos para texto largo */
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left; /* Volver el texto de los párrafos a la izquierda */
+      margin-bottom: 20px;
+    }
+
+    section#analisis-competencia h3 {
+      text-align: center; /* Centrar los subtítulos de los competidores */
+      margin-top: 40px; /* Más espacio antes de cada competidor */
+      font-size: 1.8rem;
+    }
+
+    /* ESTILOS PARA LA TABLA COMPARATIVA */
     .comparative-table {
         width: 100%;
         border-collapse: collapse; /* Para que los bordes de las celdas se fusionen */
         margin-top: 30px;
         margin-bottom: 20px;
+        max-width: 900px; /* Limitar ancho de la tabla */
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .comparative-table th,
@@ -700,6 +737,14 @@
             width: 90%; /* Las imágenes ocupan el 90% del ancho del contenedor */
             max-width: 350px; /* Pero no exceden un tamaño razonable */
         }
+
+        section#analisis-competencia p {
+            text-align: center; /* Centrar párrafos en móvil para mejor legibilidad */
+        }
+
+        section#analisis-competencia h3 {
+            text-align: center; /* Centrar los subtítulos de los competidores */
+        }
     }
 
     @media (max-width: 480px) {
@@ -781,10 +826,10 @@
 
   <section id="quehacemos">
     <div class="quehacemos-container">
-      <div class="quehacemos-image"> 
+      <div class="quehacemos-image">
         <img src="img/capinicio.png" alt="Automatización del hogar" class="modal-trigger-img">
       </div>
-      <div class="quehacemos-text"> 
+      <div class="quehacemos-text">
         <h2>¿Qué hacemos?</h2>
         <p>Ofrecemos soluciones de domótica personalizadas. Creamos una interfaz intuitiva para controlar dispositivos y mejorar la eficiencia energética y el confort en casa.</p>
       </div>
@@ -802,19 +847,19 @@
 
   <section id="somos">
     <h2>Nosotros somos</h2>
-    <p>Un equipo multidisciplinario de estudiantes apasionados por la tecnología, el diseño y la automatización. 
+    <p>Un equipo multidisciplinario de estudiantes apasionados por la tecnología, el diseño y la automatización.
       Contactanos a traves de...</p>
   </section>
 
   <section id="help">
     <div class="help-container">
       <div class="help-image">
-        <img src="img/capformulario.png" alt="Ayuda">
+        <img src="capformulario.png" alt="Ayuda">
       </div>
       <div class="help-text">
         <h2>Ayúdanos a mejorar</h2>
-        <p>¿Tenés ideas, críticas o sugerencias brillantes? ¡Queremos escucharte! Tu opinión nos ayuda a hacer VECOPO más fuerte, más rápido, y con más efectivo para tu hogar. 
-          Apoyanos completando este formulario: <br>  
+        <p>¿Tenés ideas, críticas o sugerencias brillantes? ¡Queremos escucharte! Tu opinión nos ayuda a hacer VECOPO más fuerte, más rápido, y con más efectivo para tu hogar.
+          Apoyanos completando este formulario: <br>
         <a href="https://forms.gle/M53VLF9gxxWw9Ga68" target="_blank">
             https://forms.gle/M53V
             LF9gxxWw9Ga68
@@ -829,54 +874,124 @@
     <div class="results-image-container">
       <img src="img/capgender.png" alt="Resultados Género" class="modal-trigger-img">
       <img src="img/capedad.png" alt="Resultados Edad" class="modal-trigger-img">
-      <img src="img/capautoma.png" alt="Resultados Automatización" class="modal-trigger-img">
+      <img src="img/capautoma.jpg" alt="Resultados Automatización" class="modal-trigger-img">
     </div>
   </section>
 
   <section id="analisis-competencia">
     <h2>Análisis de Competencia</h2>
-    <p style="text-align: center; margin-bottom: 30px;">A continuación, un cuadro comparativo que destaca las diferencias clave entre VECOPO y otras soluciones de automatización del hogar en el mercado.</p>
+    <p>El mercado de la automatización del hogar es diverso y en constante crecimiento. VECOPO se enfoca en un nicho específico (ventanas, cortinas y postigos) buscando ofrecer una solución intuitiva y asequible. A continuación, analizamos a VECOPO frente a los principales tipos de competidores globales, considerando sus fortalezas y debilidades.</p>
+
+    <h3 style="margin-top: 50px;">Cuadro Comparativo Detallado</h3>
+    <p style="text-align: center; margin-bottom: 30px;">Una comparación directa de VECOPO con los competidores clave en los 14 puntos de análisis:</p>
 
     <table class="comparative-table">
         <thead>
             <tr>
                 <th>Característica</th>
                 <th>VECOPO</th>
-                <th>Otras Empresas (Ejemplos)</th>
+                <th>Somfy</th>
+                <th>Ecosistema Tuya / OEMs</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td data-label="Característica">Facilidad de Uso</td>
-                <td data-label="VECOPO">Interfaz intuitiva, configuración sencilla</td>
-                <td data-label="Otras Empresas">Requiere conocimientos técnicos, configuración compleja</td>
+                <td data-label="Característica">Principales empresas con las que vamos a competir.</td>
+                <td data-label="VECOPO">Somfy, Ecosistemas Tuya Smart / OEMs, Shelly / Sonoff.</td>
+                <td data-label="Somfy">Fabricantes de motores y automatización para cerramientos (Dormakaba, Becker), otras marcas de domótica premium.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Otras plataformas OEM (Smart Life, Xiaomi Home), marcas de dispositivos individuales de bajo costo.</td>
             </tr>
             <tr>
-                <td data-label="Característica">Costo Inicial</td>
-                <td data-label="VECOPO">Asequible, relación calidad-precio</td>
-                <td data-label="Otras Empresas">Alto, soluciones de gama alta</td>
+                <td data-label="Característica">Localización.</td>
+                <td data-label="VECOPO">Global (con foco inicial en Argentina/LatAm).</td>
+                <td data-label="Somfy">Global, fuerte presencia en Europa y Norteamérica.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Global (desarrollo en China, distribución masiva online).</td>
             </tr>
             <tr>
-                <td data-label="Característica">Funcionalidades Básicas</td>
-                <td data-label="VECOPO">Control de horarios para ventanas, cortinas y postigones</td>
-                <td data-label="Otras Empresas">Control general de dispositivos, enfoque amplio</td>
+                <td data-label="Característica">Productos y servicios que ofrecen.</td>
+                <td data-label="VECOPO">Sistema de automatización para ventanas, cortinas y postigos con control de horarios.</td>
+                <td data-label="Somfy">Motores, controles, pasarelas, sensores, sistemas integrados para persianas, toldos, cortinas.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Amplia gama de dispositivos IoT: motores de cortina, interruptores, bombillas, enchufes, sensores, cámaras.</td>
             </tr>
             <tr>
-                <td data-label="Característica">Soporte al Usuario</td>
-                <td data-label="VECOPO">Comunidad activa y soporte técnico dedicado</td>
-                <td data-label="Otras Empresas">Limitado a documentación o foros especializados</td>
+                <td data-label="Característica">Precio de venta de la competencia.</td>
+                <td data-label="VECOPO">Asequible, excelente relación calidad-precio.</td>
+                <td data-label="Somfy">Alto / Premium (motores individuales desde 100-300 USD+, sistemas completos mucho más).</td>
+                <td data-label="Ecosistema Tuya / OEMs">Bajo a medio-bajo (motores/interruptores desde 30-80 USD).</td>
             </tr>
-            </tbody>
+            <tr>
+                <td data-label="Característica">Medios de pago.</td>
+                <td data-label="VECOPO">Online (tarjetas, transferencias), posibles opciones locales.</td>
+                <td data-label="Somfy">Transferencias, tarjetas (vía distribuidores o web), financiamiento para proyectos.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Tarjetas de crédito/débito, PayPal, métodos de pago de plataformas e-commerce (Mercado Pago, etc.).</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Características de la materia prima.</td>
+                <td data-label="VECOPO">Componentes estándar de domótica, durabilidad, posiblemente reciclables.</td>
+                <td data-label="Somfy">Alta calidad, robustez, componentes propietarios, plásticos de ingeniería, durabilidad a largo plazo.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Estándar, producción masiva (chips ESP, plásticos ABS), calidad funcional, varía entre fabricantes.</td>
+            </tr>
+            <tr>
+                <td data-label="Característica"> Marca.</td>
+                <td data-label="VECOPO">Emergente, enfocada en innovación y facilidad de uso.</td>
+                <td data-label="Somfy">Establecida, sinónimo de calidad, fiabilidad y profesionalismo.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Tuya como "marca detrás de las marcas", productos individuales con marcas variadas.</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Tecnología.</td>
+                <td data-label="VECOPO">Wi-Fi / Zigbee (estándar), plataforma de software propia.</td>
+                <td data-label="Somfy">RTS, io-homecontrol (propietarias), Wi-Fi, Zigbee, integraciones.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Wi-Fi (principal), Zigbee, Bluetooth, dependencia de la nube Tuya.</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Embalaje.</td>
+                <td data-label="VECOPO">Funcional, minimalista, protector, comunica modernidad.</td>
+                <td data-label="Somfy">Profesional, robusto, premium, instrucciones detalladas.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Variado, desde genérico a más elaborado, funcional, optimizado para costo.</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Principales clientes de los competidores.</td>
+                <td data-label="VECOPO">Usuarios finales que buscan automatización de cerramientos, comodidad, ahorro energético.</td>
+                <td data-label="Somfy">Integradores, arquitectos, constructores, usuarios de alta gama.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Usuarios finales que buscan soluciones inteligentes accesibles, entusiastas con presupuesto.</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Atención al cliente.</td>
+                <td data-label="VECOPO">Dedicada, soporte online, Whatsapp, Email con respuesta instantánea, comunidad activa.</td>
+                <td data-label="Somfy">Red global de soporte técnico, servicio al cliente especializado, programas para instaladores.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Varía mucho por marca OEM, generalmente a través del vendedor o la app Tuya Smart.</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Cumplimiento de entrega.</td>
+                <td data-label="VECOPO">Logística optimizada para el mercado objetivo.</td>
+                <td data-label="Somfy">Redes de distribución establecidas, plazos fiables.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Variables (largos desde China, rápidos desde distribuidores locales).</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Tipo de publicidad que realiza.</td>
+                <td data-label="VECOPO">Marketing digital, redes sociales, énfasis en facilidad y beneficios.</td>
+                <td data-label="Somfy">Revistas de arquitectura, ferias, marketing digital a profesionales, medios lifestyle.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Principalmente marketing digital, reseñas en e-commerce, promociones de precio agresivas.</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Puntos débiles y fuertes de los competidores.</td>
+                <td data-label="VECOPO">Fuerte: Simplicidad, asequibilidad, nicho específico. 
+                <br>Débil: Marca nueva, necesita reconocimiento.</td>
+                <td data-label="Somfy">Fuerte: Calidad, fiabilidad, marca. 
+                <br>Débil: Costo, sistemas propietarios.</td>
+                <td data-label="Ecosistema Tuya / OEMs">Fuerte: Precio, variedad. Débil: Calidad inconsistente, dependencia de la nube, privacidad.</td>
+            </tr>
+        </tbody>
     </table>
 
-    <p style="text-align: center; margin-top: 30px;">Este cuadro es un punto de partida. En futuras actualizaciones, ampliaremos los criterios de comparación y la información detallada de cada competidor.</p>
+    <p style="text-align: center; margin-top: 30px;">Este análisis integral nos permite identificar las oportunidades de VECOPO en el mercado, destacando nuestra propuesta de valor única frente a la competencia global.</p>
   </section>
   <section id="conclusion">
     <h2>Conclusión</h2>
-    <p>la conclusion a la q se llego fue positiva debido a que un 60%
-        de las personas les agrada la idea de automatizar sus ventanas, cortinas y postigones , 
-        a su vez el 20% pagaria 200.000 mil pesos por el producto y el 
-        10% pagaria mas de 500.000 mil pesos.</p>
+    <p>La conclusión a la que se llegó fue positiva, debido a que un 60%
+        de las personas les agrada la idea de automatizar sus ventanas, cortinas y postigones.
+        A su vez, el 20% pagaría 200.000 mil pesos por el producto y el
+        10% pagaría más de 500.000 mil pesos.</p>
     <p>Agradecemos tu interés y apoyo en hacer de VECOPO una realidad que simplifique la vida moderna.</p>
   </section>
 
