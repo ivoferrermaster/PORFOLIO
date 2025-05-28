@@ -7,6 +7,7 @@
   <meta name="author" content="Ivo">
 
   <title>VECOPO Tesina</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -24,6 +25,14 @@
       min-height: 100vh;
     }
 
+    /* Regla general para imágenes y videos */
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block; 
+    }
+
+    /* HEADER GENERAL */
     header {
       position: fixed;
       top: 0;
@@ -42,23 +51,6 @@
       transition: all 0.3s ease;
     }
 
-    header a {
-      color: #00e0ff;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 6px;
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
-      background: linear-gradient(120deg, #00e0ff 0%, #5c96c5 50%, #6de3f0 100%);
-      background-size: 300%;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transition: transform 0.3s ease;
-    }
-
     header::after {
       content: '';
       position: absolute;
@@ -69,25 +61,69 @@
       background: linear-gradient(to right, transparent, #0f30c5, transparent);
     }
 
-    header a::after {
-      content: '';
+    /* NAV LINKS CONTAINER */
+    .nav-links {
+      display: flex;
+      gap: 15px; /* Espacio entre los botones/iconos */
+      align-items: center; /* Centra verticalmente los elementos */
+    }
+
+    /* Estilos para el botón de icono (el <a>) */
+    .nav-icon-button {
+      display: flex; /* Para alinear el icono y el texto (si se hace visible) */
+      flex-direction: column; /* Coloca el tooltip debajo del icono */
+      align-items: center; /* Centra el icono y el texto */
+      justify-content: center;
+      color: #00e0ff; /* Color del icono por defecto */
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px; /* Padding reducido para ser más compacto */
+      border-radius: 6px;
+      position: relative; /* Esencial para el tooltip */
+      overflow: visible; /* Permitir que el tooltip se muestre fuera */
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .nav-icon-button i {
+      font-size: 1.5rem; /* Tamaño del icono */
+      color: #00e0ff; /* Color del icono */
+      transition: color 0.3s ease;
+    }
+
+    /* Estilo para el tooltip (el texto que aparece al hacer hover) */
+    .tooltip-text {
+      visibility: hidden;
+      opacity: 0;
+      width: auto; /* Ancho automático según el contenido */
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 8px;
       position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 2px;
-      width: 0%;
-      background-color: yellow;
-      transition: width 0.4s ease;
+      z-index: 1;
+      bottom: -35px; /* Posiciona el tooltip debajo del botón */
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap; /* Evita que el texto del tooltip se rompa */
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      font-size: 0.85rem; /* Tamaño de fuente más pequeño para el tooltip */
+      pointer-events: none; /* Asegura que el tooltip no interfiera con los eventos del mouse */
     }
 
-    header a:hover::after {
-      width: 100%;
+    /* Muestra el tooltip al pasar el mouse por encima del botón */
+    .nav-icon-button:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
     }
 
-    header a:hover {
-      animation: shineText 1s forwards;
+    .nav-icon-button:hover {
+      transform: scale(1.1); /* Efecto de escala al hacer hover */
+      /* Eliminamos la animación shineText de los botones para no interferir con el tooltip */
     }
 
+    /* KEYFRAMES para la animación de texto (si aún la usas en otro lugar) */
     @keyframes shineText {
       0% {
         background-position: -100%;
@@ -97,9 +133,17 @@
       }
     }
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: #00e0ff;
     }
 
     #particles-js {
@@ -133,86 +177,9 @@
     }
 
     section.visible {
-      opacity: 3;
-      transform: translateY(0); /* Corrección: debe ser 0 para que no haya traslación */
+      opacity: 1; /* Corregido a 1 para una opacidad estándar */
+      transform: translateY(0);
       pointer-events: auto;
-    }
-
-    .help-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 50px;
-      flex-wrap: wrap;
-      text-align: left;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .help-image {
-      flex: 1;
-      min-width: 300px;
-      max-width: 500px;
-    }
-
-    .help-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .help-text {
-      flex: 1;
-      min-width: 300px;
-      max-width: 500px;
-    }
-
-    .help-text a {
-      color: #00e0ff;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-block;
-      padding: 5px 10px;
-    }
-
-    .help-text a:hover {
-      transform: scale(1.05);
-      text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .glass-box {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 2rem;
-        margin: 2rem auto;
-        width: 80%;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        color: white;
-    }
-
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-
-    .menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background: #00e0ff;
     }
 
     section:nth-child(odd) {
@@ -245,7 +212,8 @@
       font-size: 1.1em;
       line-height: 1.7;
     }
-    /* ESTILOS NUEVOS PARA SECCIONES DESLUMBRANTES */
+
+    /* ESTILOS PARA SECCIONES DESLUMBRANTES */
     section#inicio {
       position: relative;
       display: flex;
@@ -289,43 +257,43 @@
       max-width: 600px;
     }
 
-    #inicio p{
+    #inicio p {
       color: #fff;
     }
 
     /* --- ESTILOS PARA LA SECCIÓN "¿Qué hacemos?" --- */
     .quehacemos-container {
       display: flex;
-      align-items: center; /* Centra verticalmente los elementos en desktop */
-      justify-content: center; /* Centra horizontalmente el grupo de elementos */
-      gap: 50px; /* Espacio entre la imagen y el texto */
-      flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-      text-align: left; /* Alineación del texto por defecto en desktop */
-      max-width: 1200px; /* Ancho máximo del contenedor */
-      margin: 0 auto; /* Centra el contenedor en la página */
-      flex-direction: row-reverse; /* ¡IMAGEN A LA DERECHA en desktop! */
-      padding: 20px; /* Pequeño padding alrededor del contenido del contenedor */
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      text-align: left;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-direction: row-reverse; /* IMAGEN A LA DERECHA en desktop! */
+      padding: 20px;
     }
 
     .quehacemos-image {
-      flex: 1; /* Permite que la imagen ocupe espacio flexible */
-      min-width: 300px; /* Ancho mínimo antes de envolver */
-      max-width: 500px; /* Ancho máximo de la imagen */
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
     }
 
     .quehacemos-image img {
-      width: 100%; /* La imagen ocupa el 100% de su contenedor */
-      height: auto; /* Mantiene la relación de aspecto */
-      border-radius: 15px; /* Bordes redondeados */
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra para el efecto flotante */
-      animation: float 6s ease-in-out infinite; /* Reutiliza la animación 'float' */
-      cursor: pointer; /* Indica que la imagen es clickeable */
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: float 6s ease-in-out infinite;
+      cursor: pointer;
     }
 
     .quehacemos-text {
-      flex: 1; /* Permite que el texto ocupe espacio flexible */
-      min-width: 300px; /* Ancho mínimo antes de envolver */
-      max-width: 500px; /* Ancho máximo del texto */
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
     }
 
     .copyright {
@@ -439,149 +407,288 @@
     .modal-trigger-img:hover {
       transform: scale(1.02); /* Efecto hover sutil */
     }
+
+    /* ESTILOS PARA LA SECCIÓN "Ayudanos a mejorar" */
+    .help-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      text-align: left;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .help-image {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+
+    .help-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .help-text {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+
+    .help-text a {
+      color: #00e0ff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding: 5px 10px;
+    }
+
+    .help-text a:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .glass-box {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem auto;
+        width: 80%;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: white;
+    }
+
+    /* NUEVOS ESTILOS PARA LA TABLA COMPARATIVA */
+    .comparative-table {
+        width: 100%;
+        border-collapse: collapse; /* Para que los bordes de las celdas se fusionen */
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .comparative-table th,
+    .comparative-table td {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    .comparative-table th {
+        background-color: rgba(0, 224, 255, 0.1); /* Fondo claro para los encabezados */
+        color: #00e0ff;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .comparative-table tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.05); /* Rayas para facilitar la lectura */
+    }
+
+    .comparative-table tr:hover {
+        background-color: rgb(14, 13, 13); /* Resaltar fila al pasar el ratón */
+    }
+
+    .comparative-table td {
+        color: #ccc;
+    }
+
     /* Media queries para responsividad */
     @media (max-width: 1200px) {
 
-      header {
-        padding: 20px 20px;
-        flex-direction: row-reverse; 
-        justify-content: space-between;
-      }
+        header {
+            padding: 20px 20px;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+        }
 
-      .nav-links {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background: rgba(17, 17, 17, 0.98);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        
-        /* CAMBIOS CLAVE PARA EL MENÚ HAMBURGUESA */
-        visibility: hidden; /* Oculta el elemento sin quitarlo del flujo */
-        opacity: 0; /* Lo hace invisible */
-        padding: 20px 0;
-        gap: 10px;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease;
-        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s; /* Transición para transform y opacity, y visibility retrasada */
-      }
+        .nav-links {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            flex-direction: column;
+            background: rgba(17, 17, 17, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
 
-      .nav-links.active {
-        display: flex;
-        visibility: visible; /* Hace el menú visible */
-        opacity: 1; /* Lo hace completamente opaco */
-        transform: translateY(0);
-        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s; /* Elimina el retraso de visibility */
-      }
+            visibility: hidden;
+            opacity: 0;
+            padding: 20px 0;
+            gap: 10px;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s;
+        }
 
-      .menu-toggle {
-        display: flex;
-        z-index: 1001;
-      }
+        .nav-links.active {
+            display: flex;
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s;
+        }
 
-      section {
-        padding: 100px 20px 40px;
-      }
+        .menu-toggle {
+            display: flex;
+            z-index: 1001;
+        }
 
-      section#inicio h1 {
-        font-size: 2rem;
-        padding: 0 20px;
-      }
+        section {
+            padding: 100px 20px 40px;
+        }
 
-      section#inicio p {
-        font-size: 1rem;
-        padding: 0 20px;
-      }
+        section#inicio h1 {
+            font-size: 2rem;
+            padding: 0 20px;
+        }
 
-      /* --- ESTILOS PARA LA SECCIÓN "¿Qué hacemos?" --- */
-      .quehacemos-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 50px;
-        flex-wrap: wrap;
-        text-align: left;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        flex-direction: row-reverse; /* IMAGEN A LA DERECHA en desktop! */
-      }
+        section#inicio p {
+            font-size: 1rem;
+            padding: 0 20px;
+        }
 
-      /* El resto de los estilos para .quehacemos-image y .quehacemos-text se mantienen */
-      .quehacemos-image {
-        flex: 1;
-        min-width: 300px;
-        max-width: 500px;
-      }
+        /* Ajustes para los botones de navegación en móvil */
+        .nav-icon-button {
+            flex-direction: row; /* Coloca el icono y el texto en línea */
+            padding: 10px 20px; /* Más padding para los botones de menú móvil */
+            width: 100%; /* Ocupa todo el ancho en el menú móvil */
+            justify-content: flex-start; /* Alinea el icono y el texto a la izquierda */
+            border-bottom: 1px solid rgba(0, 224, 255, 0.1); /* Separador entre elementos */
+        }
 
-      .quehacemos-image img {
-        width: 100%;
-        height: auto;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        animation: float 6s ease-in-out infinite;
-      }
+        .nav-icon-button:last-child {
+            border-bottom: none; /* Eliminar el borde inferior del último elemento */
+        }
 
-      .quehacemos-text {
-        flex: 1;
-        min-width: 300px;
-        max-width: 500px;
-      }
+        .nav-icon-button i {
+            margin-right: 10px; /* Espacio entre el icono y el texto en móvil */
+            font-size: 1.3rem; /* Ajuste el tamaño del icono para móvil */
+        }
 
-      .help-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Este es clave: centra los elementos horizontalmente en un layout de columna */
-        gap: 30px;
-        text-align: center; /* Centra el texto dentro de los elementos */
-        padding: 0; /* Eliminamos el padding vertical redundante del contenedor */
-        width: 90%; /* El contenedor ocupa el 90% del ancho disponible */
-        margin: 0 auto; /* Centra el contenedor mismo dentro de la sección */
-      }
+        /* En pantallas pequeñas, el tooltip se convierte en el texto del botón */
+        .nav-icon-button .tooltip-text {
+            position: static; /* Quita el posicionamiento absoluto */
+            visibility: visible; /* Hace el texto visible */
+            opacity: 1; /* Sin transparencia */
+            transform: none; /* Elimina la transformación */
+            background-color: transparent; /* Fondo transparente */
+            color: #00e0ff; /* Color del texto para contraste */
+            padding: 0; /* Sin padding */
+            font-size: 1rem; /* Tamaño de fuente legible */
+            text-align: left; /* Alinea el texto a la izquierda */
+            white-space: normal; /* Permite que el texto se rompa */
+            pointer-events: auto; /* Permite interacción */
+        }
 
-      .help-image {
-        /* Eliminamos 'width: 100%;' para que 'max-width' y 'align-items' controlen mejor el tamaño y centrado */
-        max-width: 280px; /* La imagen no superará los 280px de ancho */
-        margin: 0 auto; /* Centra explícitamente la imagen dentro de su espacio */
-      }
+        /* Revertir las direcciones en móvil para .quehacemos-container */
+        .quehacemos-container {
+            flex-direction: column; /* La imagen arriba, el texto abajo */
+            align-items: center; /* Centra los elementos cuando están en columna */
+            text-align: center; /* Centra el texto */
+        }
 
-      /* Asegura que la imagen dentro de .help-image se ajuste siempre a su contenedor */
-      .help-image img {
-        max-width: 100%;
-        height: auto;
-        display: block; /* Importante para que 'margin: auto' funcione correctamente si el padre es un bloque */
-      }
+        .quehacemos-image, .quehacemos-text {
+            max-width: 90%; /* Ajuste para que no sean demasiado anchos en móvil */
+        }
 
-      .help-text {
-        width: 100%; /* El texto puede ocupar todo el ancho del contenedor */
-        max-width: 600px; /* Aunque ocupe 100%, no excederá este máximo */
-        font-size: 1rem;
-        line-height: 1.6;
-        padding: 0 10px; /* Pequeño padding lateral para que el texto no toque los bordes */
-        text-align: center; /* Centra el texto dentro del bloque */
-        margin: 0 auto; /* Centra el bloque de texto */
-      }
+        .help-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            text-align: center;
+            padding: 0;
+            width: 90%;
+            margin: 0 auto;
+        }
 
-      .glass-box {
-        width: 95%;
-        padding: 1.5rem;
-        margin: 1rem auto;
-      }
+        .help-image {
+            max-width: 280px;
+            margin: 0 auto;
+        }
 
-      /* Media Query para el modal en pantallas más pequeñas */
-      .modal-content {
-        width: 95%;
-      }
-      .close-button {
-        top: 10px;
-        right: 20px;
-        font-size: 30px;
-      }
+        .help-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .help-text {
+            width: 100%;
+            max-width: 600px;
+            font-size: 1rem;
+            line-height: 1.6;
+            padding: 0 10px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .glass-box {
+            width: 95%;
+            padding: 1.5rem;
+            margin: 1rem auto;
+        }
+
+        /* Media Query para el modal en pantallas más pequeñas */
+        .modal-content {
+            width: 95%;
+        }
+        .close-button {
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+        }
+
+        /* Responsive adjustments for table */
+        .comparative-table, .comparative-table tbody, .comparative-table tr, .comparative-table td, .comparative-table th {
+            display: block; /* Make all table elements behave like block elements */
+        }
+
+        .comparative-table thead {
+            display: none; /* Hide the table header */
+        }
+
+        .comparative-table tr {
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparative-table td {
+            text-align: right; /* Align content to the right */
+            padding-left: 50%; /* Make space for pseudo-elements */
+            position: relative;
+        }
+
+        .comparative-table td::before {
+            content: attr(data-label); /* Use data-label for the pseudo-element content */
+            position: absolute;
+            left: 15px;
+            width: calc(50% - 30px); /* Adjust width to fit */
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left;
+            font-weight: 600;
+            color: #00e0ff;
+        }
     }
 
-     @media (max-width: 768px) {
+    @media (max-width: 768px) {
         /* Para asegurar que las imágenes de resultados se muestren una debajo de la otra en pantallas aún más pequeñas */
         .results-image-container {
             flex-direction: column;
@@ -595,23 +702,22 @@
         }
     }
 
-
     @media (max-width: 480px) {
-      section {
-        padding: 80px 15px 30px;
-      }
+        section {
+            padding: 80px 15px 30px;
+        }
 
-      section#inicio h1 {
-        font-size: 1.8rem;
-      }
+        section#inicio h1 {
+            font-size: 1.8rem;
+        }
 
-      .quehacemos-container {
-        padding: 10px; 
-      }
+        .quehacemos-container {
+            padding: 10px;
+        }
 
-      .help-container {
-        padding: 10px; 
-      }
+        .help-container {
+            padding: 10px;
+        }
     }
   </style>
 </head>
@@ -624,14 +730,42 @@
       <div></div>
     </div>
     <nav class="nav-links" id="nav-links">
-      <a href="#inicio">Inicio</a>
-      <a href="#introduccion">Introducción</a>
-      <a href="#quehacemos">¿Qué hacemos?</a>
-      <a href="#quebuscamos">¿Qué buscamos?</a>
-      <a href="#somos">Nosotros somos</a>
-      <a href="#help">Ayudanos a mejorar</a>
-      <a href="#Resultados">Resultados</a> 
-      <a href="#conclusion">Conclusión</a> 
+        <a href="#inicio" class="nav-icon-button" aria-label="Ir a Inicio">
+            <i class="fas fa-home"></i>
+            <span class="tooltip-text">Inicio</span>
+        </a>
+        <a href="#introduccion" class="nav-icon-button" aria-label="Ir a Introducción">
+            <i class="fas fa-info-circle"></i>
+            <span class="tooltip-text">Introducción</span>
+        </a>
+        <a href="#quehacemos" class="nav-icon-button" aria-label="Ir a Qué hacemos?">
+            <i class="fas fa-lightbulb"></i>
+            <span class="tooltip-text">¿Qué hacemos?</span>
+        </a>
+        <a href="#quebuscamos" class="nav-icon-button" aria-label="Ir a Qué buscamos?">
+            <i class="fas fa-search-dollar"></i>
+            <span class="tooltip-text">¿Qué buscamos?</span>
+        </a>
+        <a href="#somos" class="nav-icon-button" aria-label="Ir a Nosotros somos">
+            <i class="fas fa-users"></i>
+            <span class="tooltip-text">Nosotros somos</span>
+        </a>
+        <a href="#help" class="nav-icon-button" aria-label="Ir a Ayúdanos a mejorar">
+            <i class="fas fa-handshake"></i>
+            <span class="tooltip-text">Ayúdanos a mejorar</span>
+        </a>
+        <a href="#Resultados" class="nav-icon-button" aria-label="Ir a Resultados">
+            <i class="fas fa-chart-bar"></i>
+            <span class="tooltip-text">Resultados</span>
+        </a>
+        <a href="#analisis-competencia" class="nav-icon-button" aria-label="Ir a Análisis de Competencia">
+            <i class="fas fa-chart-pie"></i>
+            <span class="tooltip-text">Análisis de Competencia</span>
+        </a>
+        <a href="#conclusion" class="nav-icon-button" aria-label="Ir a Conclusión">
+            <i class="fas fa-award"></i>
+            <span class="tooltip-text">Conclusión</span>
+        </a>
     </nav>
   </header>
 
@@ -699,12 +833,50 @@
     </div>
   </section>
 
+  <section id="analisis-competencia">
+    <h2>Análisis de Competencia</h2>
+    <p style="text-align: center; margin-bottom: 30px;">A continuación, un cuadro comparativo que destaca las diferencias clave entre VECOPO y otras soluciones de automatización del hogar en el mercado.</p>
+
+    <table class="comparative-table">
+        <thead>
+            <tr>
+                <th>Característica</th>
+                <th>VECOPO</th>
+                <th>Otras Empresas (Ejemplos)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Característica">Facilidad de Uso</td>
+                <td data-label="VECOPO">Interfaz intuitiva, configuración sencilla</td>
+                <td data-label="Otras Empresas">Requiere conocimientos técnicos, configuración compleja</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Costo Inicial</td>
+                <td data-label="VECOPO">Asequible, relación calidad-precio</td>
+                <td data-label="Otras Empresas">Alto, soluciones de gama alta</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Funcionalidades Básicas</td>
+                <td data-label="VECOPO">Control de horarios para ventanas, cortinas y postigones</td>
+                <td data-label="Otras Empresas">Control general de dispositivos, enfoque amplio</td>
+            </tr>
+            <tr>
+                <td data-label="Característica">Soporte al Usuario</td>
+                <td data-label="VECOPO">Comunidad activa y soporte técnico dedicado</td>
+                <td data-label="Otras Empresas">Limitado a documentación o foros especializados</td>
+            </tr>
+            </tbody>
+    </table>
+
+    <p style="text-align: center; margin-top: 30px;">Este cuadro es un punto de partida. En futuras actualizaciones, ampliaremos los criterios de comparación y la información detallada de cada competidor.</p>
+  </section>
   <section id="conclusion">
     <h2>Conclusión</h2>
     <p>la conclusion a la q se llego fue positiva debido a que un 60%
-       de las personas les agrada la idea de automatizar sus ventanas, cortinas y postigones , 
-       a su vez el 20% pagaria 200.000 mil pesos por el producto y el 
-       10% pagaria mas de 500.000 mil pesos.</p>
+        de las personas les agrada la idea de automatizar sus ventanas, cortinas y postigones , 
+        a su vez el 20% pagaria 200.000 mil pesos por el producto y el 
+        10% pagaria mas de 500.000 mil pesos.</p>
     <p>Agradecemos tu interés y apoyo en hacer de VECOPO una realidad que simplifique la vida moderna.</p>
   </section>
 
